@@ -7,12 +7,12 @@ The project is still in its planning phase. This repository is for sandbox testi
 - Cross-platform at least Windows/Mac/Linux and hopefully emscripten
 - Memory-safe, primarily through Rust's safety features
 - Compatible with existing standards
-- Able to play many module formats through libopenmpt
-- General compatibility with OpenMPT
 - Embeddable in game engines/music applications
 - Portable/serializable file formats
 
 ## Nice-to-haves but fraught with issues
+- General compatibility with OpenMPT
+- Able to play many module formats through libopenmpt
 - VST2/3, DSSI, LADSPA, LV2, AU plugin support
 - A scripting API
 - Internal synthesis and DSP
