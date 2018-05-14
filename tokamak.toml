@@ -1,0 +1,7 @@
+[helper]
+path = ""
+[options]
+general_warnings = false
+save_buffers_before_run = false
+[project]
+auto_format_timing = 5
