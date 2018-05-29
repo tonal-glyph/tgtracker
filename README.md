@@ -1,17 +1,16 @@
-# fadtracker
-A cross-platform music tracker in the spirit of OpenMPT and other great trackers
+# tonal glyph tracker
+A cross-platform music tracker
 
-The project is still in its planning phase. This repository is for sandbox testing and spec development.
+The project is still in its planning phase. I'm starting to get some good feedback. Any trackers out there wanna spec it out?d This repository is for sandbox testing and spec development. Check the specs folder!
 
 ## Goals
-- Cross-platform at least Windows/Mac/Linux and hopefully emscripten
+- Cross-platform at least Windows/Mac/Linux and hopefully webasm/emscripten
 - Memory-safe, primarily through Rust's safety features
 - Compatible with existing standards
 - Embeddable in game engines/music applications
 - Portable/serializable file formats
 
 ## Nice-to-haves but fraught with issues
-- General compatibility with OpenMPT
 - Able to play many module formats through libopenmpt
 - VST2/3, DSSI, LADSPA, LV2, AU plugin support
 - A scripting API
