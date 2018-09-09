@@ -1,45 +1,17 @@
 [package]
-name = "fadtracker"
+name = "tgtracker"
 version = "0.0.0-alpha"
 authors = ["Lawrence Dark <darklawrence0@gmail.com>"]
 
 [[bin]]
-name = "fadtracker"
+name = "tgtracker"
 path = "src/main.rs"
-# proc-macro = true
-
 
 [dependencies]
-#audrey = "*"
-cpal = "*"
 config = "0.8.0"
-conrod = "*"
-#dsp-chain = "0.13.1"
-#dyon = "0.26.0"
-#dyon_to_rust = "*"
-#envelope = "0.8.1"
-#getopts = "0.2"
-glium = "*"
-gluon = "*"
-#instrument = "0.2.0"
-memmap = "*"
-#midir = "0.5.0"
-#nuklear-rust = "0.3.2"
-oxdz = { path = "oxdz" }
-#panning = "0.1.1"
-#pitch_calc = "0.11.1"
-#processors = "0.2.1"
-#rft = "0.1.0"
-#rhai = "0.4.0"
-#rodio = "0.5.2"
-#rosc = "0.1.5"
-#rsoundio = "0.1.6"
-#termion = "1.5.1"
-#time_calc = "0.13.0"
-#volume = "0.4.0"
-winit = "*"
-
-[dev-dependencies]
-
-[workspace]
-members = ["oxdz"]
+gluon = "0.7.1"
+itertools = "0.7.8"
+libc = "0.2.41"
+memmap = "0.6.2"
+winit = "0.15.0"
+walkdir = "2.1.4"
