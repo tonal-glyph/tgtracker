@@ -1,17 +1,26 @@
 [package]
 name = "tgtracker"
-version = "0.0.0-alpha"
-authors = ["Lawrence Dark <darklawrence0@gmail.com>"]
+version = "0.1.0-alpha"
+authors = ["Scalar Waves <scalarwaves@null.net>"]
+license = "MIT OR Apache-2.0"
+readme = "README.md"
+repository = "https://github.com/tonal-glyph/tgtracker.git"
 
 [[bin]]
 name = "tgtracker"
 path = "src/main.rs"
 
 [dependencies]
-config = "0.8.0"
-gluon = "0.7.1"
-itertools = "0.7.8"
-libc = "0.2.41"
-memmap = "0.6.2"
-winit = "0.15.0"
-walkdir = "2.1.4"
+dsp-chain = { path = "dsp-chain" }
+nannou = { path = "nannou" }
+command-macros = "0.2.6"
+gluon = "0.9.3"
+gluon_repl = "0.9.3"
+nccl = "0.4.3"
+#panning = "0.1.1"
+#pitch_calc = "0.11.1"
+#rms = "0.4.2"
+#sample = "0.10.0"
+#syn = "0.15.7"
+#synth = "0.11.0"
+#time_calc = "0.13.0"

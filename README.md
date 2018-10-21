@@ -1,13 +1,18 @@
-
 # tonal glyph tracker
+
+A cross-platform digital audio workstation with a tracker inspired interface
 
 ![logo](logo.jpg)
 
 Photo licensed under CC Attribution-Share Alike 2.0 Generic licensed Author: [theilr](https://www.flickr.com/people/theilr/)
 
-A cross-platform music tracker
+The project is still in its planning phase. I'm starting to get some good feedback. Modern music trackers like Renoise and Reaper offer features like VST/AU/DSSI/LADSPA plug-ins and scripting languages. The tracker style interface remains a powerful and efficient way to compose music despite the concepts age. It goes all the way back to the player piano!
 
-The project is still in its planning phase. I'm starting to get some good feedback. Any trackers out there wanna spec it out?d This repository is for sandbox testing and spec development. Check the specs folder!
+Another powerful way to generate and process sound is a graph-based interface with nodes representing modular instruments and effects that can be chained together. Adding support for music programming languages like **ChucK**, **Csound**, and **Pd** opens up even more possibilities. Through the analog loophole, all of these audio languages and pretty much anything else can be used as nodes in the modular system.
+
+**Conrod** has a graph widget which uses **daggy**, and **dsp-chain** uses daggy for its audio processing and analysis graphs. Overlaying one on top of the other should be easy with a node walker.
+
+**daggy** uses **petgraph** under the hood, same as most other graph structures in crates like **processors** and **pcm-flow**.
 
 ## Goals
 
@@ -19,7 +24,7 @@ The project is still in its planning phase. I'm starting to get some good feedba
 
 ## Nice-to-haves but fraught with issues
 
-- Able to import/play many module formats through libopenmpt/libxmp/oxidrizzle
+- Able to import/play many module formats through libopenmpt/libxmp/oxdz
 - VST2/3, DSSI, LADSPA, LV2, AU plugin support
 - A scripting API
 - Internal synthesis and DSP
