@@ -1,9 +1,0 @@
-[package]
-name = "player-cpal"
-version = "0.1.0"
-authors = ["Claudio Matsuoka <cmatsuoka@gmail.com>"]
-
-[dependencies]
-oxdz = { path = "../../oxdz" }
-memmap = "0.6"
-cpal = "0.8"

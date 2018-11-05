@@ -1,78 +1,113 @@
-extern crate memmap;
-extern crate oxdz;
-extern crate cpal;
+#![allow(dead_code)]
+#![forbid(unsafe_code)]
+#![allow(missing_docs)]
+#![allow(unused_imports)]
 
+// extern crate abscissa;
+extern crate dsp;
+extern crate nannou;
+
+use dsp::daggy::*;
+use nannou::prelude::*;
+use nannou::ui::prelude::widget::graph;
+use nannou::ui::prelude::*;
 use std::env;
-use std::error::Error;
-use std::fs::File;
-use std::io::{Write, stdout};
-use std::path::Path;
-use std::sync::{Arc, Mutex};
-use std::time::Duration;
-use std::thread;
-use memmap::Mmap;
 
-/**
- * Handles CLI args. 
- */
 fn main() {
-    let args: Vec<String> = env::args().collect();
-
-    if args.len() != 2 {
-        println!("usage: {} <filename>", Path::new(&args[0]).file_name().unwrap().to_str().unwrap());
-        return;
-    }
-
-    match run(args) {
-        Ok(_)  => {},
-        Err(e) => eprintln!("error: {}", e),
-    }
+    nannou::run(model, event, view);
 }
 
-/**
- * Passes mod filename to cpal output, sets audio format
- * Sets up cpal event loop with output stream 
- * Uses an Arc for Mutex for oxdz::FrameInfo
- * Clones info, spawns a new thread
- * 
- */
-fn run(args: Vec<String>) -> Result<(), Box<Error>> {
-    let device = cpal::default_output_device().expect("Failed to get default output device");
-    let format = cpal::Format{ channels   : 2, sample_rate: cpal::SampleRate(44100), data_type  : cpal::SampleFormat::I16, };
-    let event_loop = cpal::EventLoop::new();
-    let stream_id = event_loop.build_output_stream(&device, &format)?;
-    event_loop.play_stream(stream_id);
-    let info = Arc::new(Mutex::new(oxdz::FrameInfo::new()));
-    {
-        let info = info.clone();
-        thread::spawn(move || {
-            let filename = &args[1];
-            let file = File::open(filename).unwrap();
-            // The unsafe block.
-            let mut oxdz = {
-                let mmap = unsafe { Mmap::map(&file).expect("failed to map the file") };
-                oxdz::Oxdz::new(&mmap[..], 44100, "").unwrap()
-            };
-            // Display basic module information
-            let mut mi = oxdz::ModuleInfo::new();
-            oxdz.module_info(&mut mi);
-            println!("Title : {}", mi.title);
-            println!("Format: {}", mi.description);
-            event_loop.run(move |_, data| {
-                match data {
-                    cpal::StreamData::Output{buffer: cpal::UnknownTypeOutputBuffer::I16(mut buffer)} => {
-                        { let mut fi = info.lock().unwrap(); oxdz.frame_info(&mut fi); }
-                        oxdz.fill_buffer(&mut buffer, 0);
-                    },
-                    _ => { }
-                }
-            });
-        });
-    };
-    // This loop is what plays the song.
-    loop {
-        { let fi = info.lock().unwrap(); print!("pos:{:3} - row:{:3} \r", fi.pos, fi.row); }
-        stdout().flush().unwrap();
-        std::thread::sleep(Duration::from_millis(50));
+struct Model {
+    window: WindowId,
+}
+
+fn model(app: &App) -> Model {
+    // Set the loop mode to wait for events, an energy-efficient option for
+    // pure-GUI apps.
+    app.set_loop_mode(LoopMode::wait(3));
+
+    // Create the UI.
+    // let mut ui = app.new_ui().build().unwrap();
+
+    let window = app
+        .new_window()
+        .with_title("tgtracker 0.1.0-alpha")
+        .build()
+        .unwrap();
+
+    Model { window }
+}
+
+fn event(_app: &App, model: Model, event: Event) -> Model {
+    match event {
+        Event::WindowEvent {
+            simple: Some(event),
+            ..
+        } => match event {
+            Moved(_pos) => {
+                // println!("{:?}", event);
+            }
+
+            KeyPressed(_key) => {
+                // println!("{:?}", event);
+            }
+
+            KeyReleased(_key) => {
+                // println!("{:?}", event);
+            }
+
+            MouseMoved(_pos) => {
+                // println!("{:?}", event);
+            }
+
+            MouseDragged(_pos, _button) => {
+                // println!("{:?}", event);
+            }
+
+            MousePressed(_button) => {
+                // println!("{:?}", event);
+            }
+
+            MouseReleased(_button) => {
+                // println!("{:?}", event);
+            }
+
+            MouseEntered => {
+                // println!("{:?}", event);
+            }
+
+            MouseExited => {
+                // println!("{:?}", event);
+            }
+
+            Resized(_size) => {
+                // println!("{:?}", event);
+            }
+
+            _other => (),
+        },
+
+        Event::Update(_dt) => {}
+
+        _ => (),
     }
+    model
+}
+
+// Draw the state of your `Model` into the given `Frame` here.
+fn view(_app: &App, model: &Model, frame: Frame) -> Frame {
+    frame.window(model.window).unwrap().clear(DARK_CHARCOAL);
+    // Begin drawing
+    // let draw = app.draw();
+
+    // draw.background().rgb(0.02, 0.02, 0.02);
+
+    // // Write the result of our drawing to the window's OpenGL frame.
+    // draw.to_frame(app, &frame).unwrap();
+
+    // // Draw the state of the `Ui` to the frame.
+    // model.ui.draw_to_frame(app, &frame).unwrap();
+
+    // Return the drawn frame.
+    frame
 }
