@@ -1,9 +1,0 @@
-[submodule "conrod"]
-	path = conrod
-	url = https://github.com/scalarwaves/conrod.git
-[submodule "dsp-chain"]
-	path = dsp-chain
-	url = https://github.com/scalarwaves/dsp-chain.git
-[submodule "nannou"]
-	path = nannou
-	url = https://github.com/scalarwaves/nannou.git

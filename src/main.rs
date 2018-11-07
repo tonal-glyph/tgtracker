@@ -9,7 +9,7 @@ extern crate nannou;
 
 use dsp::daggy::*;
 use nannou::prelude::*;
-use nannou::ui::prelude::widget::graph;
+use nannou::ui::prelude::widget::graph as NGraph;
 use nannou::ui::prelude::*;
 use std::env;
 
