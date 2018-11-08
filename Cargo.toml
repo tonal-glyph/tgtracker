@@ -11,7 +11,12 @@ name = "tgtracker"
 path = "src/main.rs"
 
 [dependencies]
+rand = "0.6.0-pre.1"
+conrod = "0.61.1"
 dsp-chain = "0.13.1"
+# piston2d-graphics = { version = "0.27.0", optional = true }
+# gfx = { version = "0.17.1", optional = true }
+# gfx_core = { version = "0.8.3", optional = true }
 nannou = "0.8.0"
 petgraph = "0.4"
 #sample = "0.10.0"
@@ -22,3 +27,7 @@ rutie = "0.5.0"
 #volume = "0.4.0"
 #compressor = "0.3.0"
 #synth = "0.11.0"
+
+# [features]
+# piston = ["piston2d-graphics"]
+# gfx_rs=["gfx","gfx_core"]

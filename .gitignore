@@ -3,3 +3,4 @@
 justfile
 tokamak.toml
 rustfmt.toml
+Makefile.toml
