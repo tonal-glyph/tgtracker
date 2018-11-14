@@ -1,6 +1,7 @@
 **/**/target
 **/*.rs.bk
 justfile
-tokamak.toml
-rustfmt.toml
 Makefile.toml
+tracker.code-workspace
+rustfmt*
+tokamak*

@@ -8,26 +8,36 @@
 - channel mod
 - sample mod
 - sequence mod
+  
+---
 
 - edge mod
 - node mod
 - graph mod
+
+---
 
 - instrument mod
 - phrase mod
 - envelope mod
 - point mod
 
+---
+
 - device mod
 - plugin mod
 - socket mod
 - direction mod
+
+---
 
 - document mod
 - formula mod
 - static mod
 - dynamic mod
 - snippet mod
+
+---
 
 - nodes can have instruments, patterns, sequences, recordings, and edges
 - graphs can have sequences, devices, channels
