@@ -4,7 +4,7 @@
 #[macro_use]
 extern crate conrod;
 #[cfg(all(feature = "winit", feature = "glium"))]
-mod support;
+pub mod support;
 extern crate petgraph;
 use conrod::backend::glium::glium::{self, Surface};
 use conrod::widget::graph::{node, EdgeEvent, Event, Node, NodeEvent, NodeSocket};
@@ -16,13 +16,12 @@ widget_ids! {
         graph,
     }
 }
-type MyGraph = petgraph::Graph<&'static str, (usize, usize)>;
-type Layout = widget::graph::Layout<petgraph::graph::NodeIndex>;
+pub type MyGraph = petgraph::Graph<&'static str, (usize, usize)>;
+pub type Layout = widget::graph::Layout<petgraph::graph::NodeIndex>;
 pub fn graph() {
     use support;
-    const WIDTH: u32 = 900;
-    const HEIGHT: u32 = 500;
-
+    pub const WIDTH: u32 = 900;
+    pub const HEIGHT: u32 = 500;
     // Demo Graph.
     let mut graph = MyGraph::new();
     let a = graph.add_node("A");
@@ -37,7 +36,6 @@ pub fn graph() {
         (c, d, (0, 2)),
         (d, e, (0, 0)),
     ]);
-
     // Construct a starting layout for the nodes.
     let mut layout_map = HashMap::new();
     layout_map.insert(b, [-100.0, 100.0]);
@@ -46,7 +44,6 @@ pub fn graph() {
     layout_map.insert(d, [100.0, 0.0]);
     layout_map.insert(e, [300.0, 0.0]);
     let mut layout = Layout::from(layout_map);
-
     // Build the window.
     let mut events_loop = glium::glutin::EventsLoop::new();
     let window = glium::glutin::WindowBuilder::new()
@@ -56,27 +53,21 @@ pub fn graph() {
         .with_multisampling(4)
         .with_vsync(true);
     let display = glium::Display::new(window, context, &events_loop).unwrap();
-
     // construct our `Ui`.
     let mut ui = conrod::UiBuilder::new([WIDTH as f64, HEIGHT as f64]).build();
-
     // Generate the widget identifiers.
     let ids = Ids::new(ui.widget_id_generator());
-
     // Add a `Font` to the `Ui`'s `font::Map` from file.
     const FONT_PATH: &'static str = concat!(
         env!("CARGO_MANIFEST_DIR"),
         "/assets/fonts/NotoSans/NotoSans-Regular.ttf"
     );
     ui.fonts.insert_from_file(FONT_PATH).unwrap();
-
     // A type used for converting `conrod::render::Primitives` into `Command`s that can be used
     // for drawing to the glium `Surface`.
     let mut renderer = conrod::backend::glium::Renderer::new(&display).unwrap();
-
     // The image map describing each of our widget->image mappings (in our case, none).
     let image_map = conrod::image::Map::<glium::texture::Texture2d>::new();
-
     // Begin the event loop.
     let mut event_loop = support::EventLoop::new();
     'main: loop {
@@ -88,7 +79,6 @@ pub fn graph() {
                 ui.handle_event(event);
                 event_loop.needs_update();
             }
-
             // Break from the loop upon `Escape` or closed window.
             match event.clone() {
                 glium::glutin::Event::WindowEvent { event, .. } => match event {
@@ -106,10 +96,8 @@ pub fn graph() {
                 _ => (),
             }
         }
-
         // Set the widgets.
         set_widgets(&mut ui.set_widgets(), &ids, &mut graph, &mut layout);
-
         // Draw the `Ui` if it has changed.
         if let Some(primitives) = ui.draw_if_changed() {
             renderer.fill(&display, primitives, &image_map);
@@ -120,7 +108,6 @@ pub fn graph() {
         }
     }
 }
-
 fn set_widgets(ui: &mut conrod::UiCell, ids: &Ids, graph: &mut MyGraph, layout: &mut Layout) {
     /////////////////
     ///// GRAPH /////
@@ -135,7 +122,6 @@ fn set_widgets(ui: &mut conrod::UiCell, ids: &Ids, graph: &mut MyGraph, layout: 
     // 1. `Nodes` for setting a node widget for each node.
     // 2. `Edges` for setting an edge widget for each edge.
     // 3. `Final` for optionally displaying zoom percentage and cam position.
-
     let session = {
         // An identifier for each node in the graph.
         let node_indices = graph.node_indices();
@@ -157,13 +143,11 @@ fn set_widgets(ui: &mut conrod::UiCell, ids: &Ids, graph: &mut MyGraph, layout: 
             .middle_of(ui.window)
             .set(ids.graph, ui)
     };
-
     //////////////////
     ///// EVENTS /////
     //////////////////
     //
     // Graph events that have occurred since the last time the graph was instantiated.
-
     for event in session.events() {
         match event {
             Event::Node(event) => match event {
@@ -182,13 +166,11 @@ fn set_widgets(ui: &mut conrod::UiCell, ids: &Ids, graph: &mut MyGraph, layout: 
             },
         }
     }
-
     /////////////////
     ///// NODES /////
     /////////////////
     //
     // Instantiate a widget for each node within the graph.
-
     let mut session = session.next();
     for node in session.nodes() {
         // Each `Node` contains:
@@ -218,20 +200,17 @@ fn set_widgets(ui: &mut conrod::UiCell, ids: &Ids, graph: &mut MyGraph, layout: 
             println!("{} was clicked!", &graph[node_id]);
         }
     }
-
     /////////////////
     ///// EDGES /////
     /////////////////
     //
     // Instantiate a widget for each edge within the graph.
-
     let mut session = session.next();
     for edge in session.edges() {
         let (a, b) = node::edge_socket_rects(&edge, ui);
         let line = widget::Line::abs(a.xy(), b.xy())
             .color(conrod::color::DARK_CHARCOAL)
             .thickness(3.0);
-
         // Each edge contains:
         //
         // `start` - The unique node identifier for the node at the start of the edge with point.
