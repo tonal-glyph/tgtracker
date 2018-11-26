@@ -2,6 +2,6 @@
 **/*.rs.bk
 justfile
 Makefile.toml
-tracker.code-workspace
+*.code-workspace
 rustfmt*
 tokamak*

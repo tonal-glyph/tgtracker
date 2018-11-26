@@ -10,13 +10,19 @@
 //! By sharing these items between these examples, we can test and ensure that the different events
 //! and drawing backends behave in the same manner.
 #![allow(dead_code)]
-
+#![allow(unused_attributes)]
 extern crate rand;
-
+#[macro_use()]
 use conrod;
+#[macro_use()]
+use conrod_derive::*;
 use std;
 
 use conrod::backend::glium::glium;
+use conrod::position::Scalar;
+use conrod::color::Color;
+use conrod::FontSize;
+use conrod_derive::*;
 
 pub const WIN_W: u32 = 600;
 pub const WIN_H: u32 = 420;
@@ -39,6 +45,26 @@ impl DemoApp {
             rust_logo: rust_logo,
         }
     }
+}
+
+/// Unique styling for a Button widget.
+#[derive(Copy, Clone, Debug, Default, PartialEq, WidgetStyle)]
+pub struct Style {
+    /// Color of the Button's pressable area.
+    #[conrod(default = "theme.shape_color")]
+    pub color: Option<Color>,
+    /// Width of the border surrounding the button.
+    #[conrod(default = "1.0")]
+    pub border: Option<Scalar>,
+    /// The color of the Button's rectangular border.
+    #[conrod(default = "conrod::color::BLACK")]
+    pub border_color: Option<Color>,
+    /// The color of the Button's label.
+    #[conrod(default = "theme.label_color")]
+    pub label_color: Option<Color>,
+    /// The font size for the Button's label.
+    #[conrod(default = "12")]
+    pub label_font_size: Option<FontSize>,
 }
 
 /// A set of reasonable stylistic defaults that works for the `gui` below.
@@ -67,14 +93,11 @@ pub fn theme() -> conrod::Theme {
 // Generate a unique `WidgetId` for each widget.
 widget_ids! {
     pub struct Ids {
-
         // The scrollable canvas.
         canvas,
-
         // The title and introduction widgets.
         title,
         introduction,
-
         // Shapes.
         shapes_canvas,
         rounded_rectangle,
@@ -89,26 +112,21 @@ widget_ids! {
         oval_fill,
         oval_outline,
         circle,
-
         // Image.
         image_title,
         rust_logo,
-
         // Button, XyPad, Toggle.
         button_title,
         button,
         xy_pad,
         toggle,
         ball,
-
         // NumberDialer, PlotPath
         dialer_title,
         number_dialer,
         plot_path,
-
         // Scrollbar
         canvas_scrollbar,
-
     }
 }
 

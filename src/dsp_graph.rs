@@ -1,18 +1,20 @@
-//! A simple example that demonstrates the **Graph** widget functionality.
-
 #[cfg(all(feature = "winit", feature = "glium"))]
-#[macro_use]
+#[macro_use()]
 extern crate conrod;
 #[cfg(all(feature = "winit", feature = "glium"))]
 mod support;
 extern crate petgraph;
 use conrod::backend::glium::glium::{self, Surface};
 use conrod::widget::graph::{node, EdgeEvent, Event, Node, NodeEvent, NodeSocket};
+use conrod::widget::button::Button;
 use conrod::{self, widget, Borderable, Colorable, Labelable, Positionable, Sizeable, Widget};
+#[macro_use()]
+use conrod_derive::*;
 use std::collections::HashMap;
 use support::{EventLoop};
 widget_ids! {
     struct Ids {
+        button,
         graph,
     }
 }
@@ -20,31 +22,25 @@ type MyGraph = petgraph::Graph<&'static str, (usize, usize)>;
 type Layout = widget::graph::Layout<petgraph::graph::NodeIndex>;
 pub fn graph() {
     use support;
-    const WIDTH: u32 = 900;
-    const HEIGHT: u32 = 500;
+    const WIDTH: u32 = 1024;
+    const HEIGHT: u32 = 768;
 
     // Demo Graph.
     let mut graph = MyGraph::new();
-    let a = graph.add_node("A");
-    let b = graph.add_node("B");
-    let c = graph.add_node("C");
-    let d = graph.add_node("D");
-    let e = graph.add_node("E");
+    let input = graph.add_node("Input");
+    let blackhole = graph.add_node("Blackhole");
+    let output = graph.add_node("Output");
     graph.extend_with_edges(&[
-        (a, c, (1, 0)),
-        (a, d, (0, 1)),
-        (b, d, (0, 0)),
-        (c, d, (0, 2)),
-        (d, e, (0, 0)),
+        (input, blackhole, (1, 0)),
     ]);
+
+    // let button = Button.
 
     // Construct a starting layout for the nodes.
     let mut layout_map = HashMap::new();
-    layout_map.insert(b, [-100.0, 100.0]);
-    layout_map.insert(a, [-300.0, 0.0]);
-    layout_map.insert(c, [-100.0, -100.0]);
-    layout_map.insert(d, [100.0, 0.0]);
-    layout_map.insert(e, [300.0, 0.0]);
+    layout_map.insert(blackhole, [-100.0, 100.0]);
+    layout_map.insert(input, [-300.0, 0.0]);
+    layout_map.insert(output, [-100.0, -100.0]);
     let mut layout = Layout::from(layout_map);
 
     // Build the window.
@@ -212,7 +208,7 @@ fn set_widgets(ui: &mut conrod::UiCell, ids: &Ids, graph: &mut MyGraph, layout: 
         let widget = Node::new(button)
             .inputs(inputs)
             .outputs(outputs)
-            //.socket_color(conrod::color::LIGHT_RED)
+            .socket_color(conrod::color::LIGHT_RED)
             .w_h(100.0, 60.0);
         for _click in node.widget(widget).set(ui).widget_event {
             println!("{} was clicked!", &graph[node_id]);
@@ -230,7 +226,7 @@ fn set_widgets(ui: &mut conrod::UiCell, ids: &Ids, graph: &mut MyGraph, layout: 
         let (a, b) = node::edge_socket_rects(&edge, ui);
         let line = widget::Line::abs(a.xy(), b.xy())
             .color(conrod::color::DARK_CHARCOAL)
-            .thickness(3.0);
+            .thickness(2.0);
 
         // Each edge contains:
         //
