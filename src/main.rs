@@ -3,9 +3,13 @@
 #![allow(missing_docs)]
 #![allow(unused_imports)]
 #![allow(unused_variables)]
-#[macro_use]
+#[macro_use()]
 extern crate conrod;
+#[macro_use()]
+extern crate conrod_derive;
+#[macro_use()]
 extern crate dsp;
+extern crate rusttype;
 extern crate nannou;
 extern crate petgraph;
 extern crate rand;
