@@ -21,6 +21,7 @@ use conrod::position::Scalar;
 use conrod::color::Color;
 use conrod::FontSize;
 use conrod_derive::*;
+use libc::*;
 
 pub const WIN_W: u32 = 600;
 pub const WIN_H: u32 = 420;
@@ -31,7 +32,7 @@ pub struct DemoApp {
     sine_frequency: f32,
     rust_logo: conrod::image::Id,
 }
-pub impl DemoApp {
+impl DemoApp {
     /// Simple constructor for the `DemoApp`.
     pub fn new(rust_logo: conrod::image::Id) -> Self {
         DemoApp {
@@ -42,8 +43,6 @@ pub impl DemoApp {
         }
     }
 }
-<<<<<<< HEAD
-=======
 
 /// Unique styling for a Button widget.
 #[derive(Copy, Clone, Debug, Default, PartialEq, WidgetStyle)]
@@ -65,7 +64,6 @@ pub struct Style {
     pub label_font_size: Option<FontSize>,
 }
 
->>>>>>> 6ed80e4110352bc2dcce9264361d5304e4762c0d
 /// A set of reasonable stylistic defaults that works for the `gui` below.
 pub fn theme() -> conrod::Theme {
     use conrod::position::{Align, Direction, Padding, Position, Relative};
@@ -360,7 +358,7 @@ pub struct EventLoop {
     ui_needs_update: bool,
     last_update: std::time::Instant,
 }
-pub impl EventLoop {
+impl EventLoop {
     pub fn new() -> Self {
         EventLoop {
             last_update: std::time::Instant::now(),

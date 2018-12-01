@@ -1,15 +1,13 @@
 #[cfg(all(feature = "winit", feature = "glium"))]
-#[macro_use()]
-extern crate conrod;
+#[macro_use()] use conrod::*;
 #[cfg(all(feature = "winit", feature = "glium"))]
-pub mod support;
+use support;
 extern crate petgraph;
 use conrod::backend::glium::glium::{self, Surface};
 use conrod::widget::graph::{node, EdgeEvent, Event, Node, NodeEvent, NodeSocket};
 use conrod::widget::button::Button;
 use conrod::{self, widget, Borderable, Colorable, Labelable, Positionable, Sizeable, Widget};
-#[macro_use()]
-use conrod_derive::*;
+#[macro_use()] use conrod_derive::*;
 use std::collections::HashMap;
 use support::{EventLoop};
 widget_ids! {
@@ -24,7 +22,6 @@ pub fn graph() {
     use support;
     const WIDTH: u32 = 1024;
     const HEIGHT: u32 = 768;
-
     // Demo Graph.
     let mut graph = MyGraph::new();
     let input = graph.add_node("Input");
@@ -33,12 +30,6 @@ pub fn graph() {
     graph.extend_with_edges(&[
         (input, blackhole, (1, 0)),
     ]);
-<<<<<<< HEAD
-=======
-
-    // let button = Button.
-
->>>>>>> 6ed80e4110352bc2dcce9264361d5304e4762c0d
     // Construct a starting layout for the nodes.
     let mut layout_map = HashMap::new();
     layout_map.insert(blackhole, [-100.0, 100.0]);
@@ -211,12 +202,7 @@ fn set_widgets(ui: &mut conrod::UiCell, ids: &Ids, graph: &mut MyGraph, layout: 
         let (a, b) = node::edge_socket_rects(&edge, ui);
         let line = widget::Line::abs(a.xy(), b.xy())
             .color(conrod::color::DARK_CHARCOAL)
-<<<<<<< HEAD
-            .thickness(3.0);
-=======
             .thickness(2.0);
-
->>>>>>> 6ed80e4110352bc2dcce9264361d5304e4762c0d
         // Each edge contains:
         //
         // `start` - The unique node identifier for the node at the start of the edge with point.
