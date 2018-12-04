@@ -10,6 +10,7 @@
 //! By sharing these items between these examples, we can test and ensure that the different events
 //! and drawing backends behave in the same manner.
 #![allow(dead_code)]
+#![allow(unused_attributes)]
 extern crate rand;
 #[macro_use()]
 use conrod;
@@ -20,8 +21,7 @@ use conrod::backend::glium::glium;
 use conrod::position::Scalar;
 use conrod::color::Color;
 use conrod::FontSize;
-use conrod_derive::*;
-use libc::*;
+// use libc::*;
 
 pub const WIN_W: u32 = 600;
 pub const WIN_H: u32 = 420;
@@ -86,7 +86,8 @@ pub fn theme() -> conrod::Theme {
         double_click_threshold: std::time::Duration::from_millis(500),
     }
 }
-// Generate a unique `WidgetId` for each widget.
+// Generate a unique `WidgetId` for each widget.;
+#[macro_use()] use conrod::widget_ids;
 widget_ids! {
     pub struct Ids {
         // The scrollable canvas.

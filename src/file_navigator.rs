@@ -6,8 +6,8 @@ fn main() {
     use conrod::backend::glium::glium;
     use conrod::backend::glium::glium::Surface;
 
-    const WIDTH: u32 = 600;
-    const HEIGHT: u32 = 300;
+    const WIDTH: u32 = 1024;
+    const HEIGHT: u32 = 786;
 
     // Build the window.
     let mut events_loop = glium::glutin::EventsLoop::new();

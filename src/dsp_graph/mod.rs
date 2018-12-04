@@ -1,6 +1,10 @@
-#[cfg(all(feature = "winit", feature = "glium"))]
+#![allow(dead_code)]
+#![allow(unsafe_code)]
+#![allow(missing_docs)]
+#![allow(unused_imports)]
+#![allow(unused_variables)]
+#![allow(unused_attributes)]
 #[macro_use()] use conrod::*;
-#[cfg(all(feature = "winit", feature = "glium"))]
 use support;
 extern crate petgraph;
 use conrod::backend::glium::glium::{self, Surface};
@@ -11,7 +15,7 @@ use conrod::{self, widget, Borderable, Colorable, Labelable, Positionable, Sizea
 use std::collections::HashMap;
 use support::{EventLoop};
 widget_ids! {
-    struct Ids {
+    pub struct Ids {
         button,
         graph,
     }
@@ -100,6 +104,9 @@ pub fn graph() {
         }
     }
 }
+// pub fn addnode(ui: &mut conrod::UiCell, ids: &Ids, graph: &mut MyGraph, layout: &mut Layout) {
+//     use support;
+// }
 fn set_widgets(ui: &mut conrod::UiCell, ids: &Ids, graph: &mut MyGraph, layout: &mut Layout) {
     /////////////////
     ///// GRAPH /////
@@ -202,7 +209,7 @@ fn set_widgets(ui: &mut conrod::UiCell, ids: &Ids, graph: &mut MyGraph, layout: 
         let (a, b) = node::edge_socket_rects(&edge, ui);
         let line = widget::Line::abs(a.xy(), b.xy())
             .color(conrod::color::DARK_CHARCOAL)
-            .thickness(2.0);
+            .thickness(1.0);
         // Each edge contains:
         //
         // `start` - The unique node identifier for the node at the start of the edge with point.
