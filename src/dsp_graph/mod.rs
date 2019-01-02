@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream:src/dsp_graph/mod.rs
 #![allow(dead_code)]
 #![allow(unsafe_code)]
 #![allow(missing_docs)]
@@ -5,6 +6,11 @@
 #![allow(unused_variables)]
 #![allow(unused_attributes)]
 #[macro_use()] use conrod::*;
+=======
+
+#[macro_use()] use conrod::*;
+
+>>>>>>> Stashed changes:src/dsp_graph.rs
 use support;
 extern crate petgraph;
 use conrod::backend::glium::glium::{self, Surface};
