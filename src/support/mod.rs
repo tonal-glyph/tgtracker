@@ -1,14 +1,3 @@
-//! This module is used for sharing a few items between the `all_widgets.rs`, `glutin_glium.rs` and
-//! `glutin_gfx.rs` examples.
-//!
-//! The module contains:
-//!
-//! - `pub struct DemoApp` as a demonstration of some state we want to change.
-//! - `pub fn gui` as a demonstration of all widgets, some of which mutate our `DemoApp`.
-//! - `pub struct Ids` - a set of all `widget::Id`s used in the `gui` fn.
-//!
-//! By sharing these items between these examples, we can test and ensure that the different events
-//! and drawing backends behave in the same manner.
 #![allow(dead_code)]
 #![allow(unused_attributes)]
 extern crate rand;
@@ -22,10 +11,8 @@ use conrod::position::Scalar;
 use conrod::color::Color;
 use conrod::FontSize;
 // use libc::*;
-
 pub const WIN_W: u32 = 600;
 pub const WIN_H: u32 = 420;
-/// A demonstration of some application state we want to control with a conrod GUI.
 pub struct DemoApp {
     ball_xy: conrod::Point,
     ball_color: conrod::Color,
@@ -33,7 +20,6 @@ pub struct DemoApp {
     rust_logo: conrod::image::Id,
 }
 impl DemoApp {
-    /// Simple constructor for the `DemoApp`.
     pub fn new(rust_logo: conrod::image::Id) -> Self {
         DemoApp {
             ball_xy: [0.0, 0.0],
@@ -43,28 +29,19 @@ impl DemoApp {
         }
     }
 }
-
-/// Unique styling for a Button widget.
 #[derive(Copy, Clone, Debug, Default, PartialEq, WidgetStyle)]
 pub struct Style {
-    /// Color of the Button's pressable area.
     #[conrod(default = "theme.shape_color")]
     pub color: Option<Color>,
-    /// Width of the border surrounding the button.
     #[conrod(default = "1.0")]
     pub border: Option<Scalar>,
-    /// The color of the Button's rectangular border.
     #[conrod(default = "conrod::color::BLACK")]
     pub border_color: Option<Color>,
-    /// The color of the Button's label.
     #[conrod(default = "theme.label_color")]
     pub label_color: Option<Color>,
-    /// The font size for the Button's label.
     #[conrod(default = "12")]
     pub label_font_size: Option<FontSize>,
 }
-
-/// A set of reasonable stylistic defaults that works for the `gui` below.
 pub fn theme() -> conrod::Theme {
     use conrod::position::{Align, Direction, Padding, Position, Relative};
     conrod::Theme {
@@ -86,16 +63,12 @@ pub fn theme() -> conrod::Theme {
         double_click_threshold: std::time::Duration::from_millis(500),
     }
 }
-// Generate a unique `WidgetId` for each widget.;
 #[macro_use()] use conrod::widget_ids;
 widget_ids! {
     pub struct Ids {
-        // The scrollable canvas.
         canvas,
-        // The title and introduction widgets.
         title,
         introduction,
-        // Shapes.
         shapes_canvas,
         rounded_rectangle,
         shapes_left_col,
@@ -109,24 +82,19 @@ widget_ids! {
         oval_fill,
         oval_outline,
         circle,
-        // Image.
         image_title,
         rust_logo,
-        // Button, XyPad, Toggle.
         button_title,
         button,
         xy_pad,
         toggle,
         ball,
-        // NumberDialer, PlotPath
         dialer_title,
         number_dialer,
         plot_path,
-        // Scrollbar
         canvas_scrollbar,
     }
 }
-/// Instantiate a GUI demonstrating every widget available in conrod.
 pub fn gui(ui: &mut conrod::UiCell, ids: &Ids, app: &mut DemoApp) {
     use conrod::{widget, Colorable, Labelable, Positionable, Sizeable, Widget};
     use std::iter::once;
@@ -134,19 +102,11 @@ pub fn gui(ui: &mut conrod::UiCell, ids: &Ids, app: &mut DemoApp) {
     pub const SHAPE_GAP: conrod::Scalar = 50.0;
     pub const TITLE_SIZE: conrod::FontSize = 42;
     pub const SUBTITLE_SIZE: conrod::FontSize = 32;
-    // `Canvas` is a widget that provides some basic functionality for laying out children widgets.
-    // By default, its size is the size of the window. We'll use this as a background for the
-    // following widgets, as well as a scrollable container for the children widgets.
     pub const TITLE: &'static str = "All Widgets";
     widget::Canvas::new()
         .pad(MARGIN)
         .scroll_kids_vertically()
         .set(ids.canvas, ui);
-    ////////////////
-    ///// TEXT /////
-    ////////////////
-    // We'll demonstrate the `Text` primitive widget by using it to draw a title and an
-    // introduction to the example.
     widget::Text::new(TITLE)
         .font_size(TITLE_SIZE)
         .mid_top_of(ids.canvas)
@@ -165,18 +125,11 @@ pub fn gui(ui: &mut conrod::UiCell, ids: &Ids, app: &mut DemoApp) {
         .center_justify()
         .line_spacing(5.0)
         .set(ids.introduction, ui);
-    ////////////////////////////
-    ///// Lines and Shapes /////
-    ////////////////////////////
     widget::Text::new("Lines and Shapes")
         .down(70.0)
         .align_middle_x_of(ids.canvas)
         .font_size(SUBTITLE_SIZE)
         .set(ids.shapes_title, ui);
-    // Lay out the shapes in two horizontal columns.
-    //
-    // TODO: Have conrod provide an auto-flowing, fluid-list widget that is more adaptive for these
-    // sorts of situations.
     widget::Canvas::new()
         .down(0.0)
         .align_middle_x_of(ids.canvas)
@@ -235,9 +188,6 @@ pub fn gui(ui: &mut conrod::UiCell, ids: &Ids, app: &mut DemoApp) {
         .right(SHAPE_GAP)
         .align_middle_y()
         .set(ids.circle, ui);
-    /////////////////
-    ///// Image /////
-    /////////////////
     widget::Text::new("Image")
         .down_from(ids.shapes_canvas, MARGIN)
         .align_middle_x_of(ids.canvas)
@@ -249,9 +199,6 @@ pub fn gui(ui: &mut conrod::UiCell, ids: &Ids, app: &mut DemoApp) {
         .down(60.0)
         .align_middle_x_of(ids.canvas)
         .set(ids.rust_logo, ui);
-    /////////////////////////////////
-    ///// Button, XYPad, Toggle /////
-    /////////////////////////////////
     widget::Text::new("Button, XYPad and Toggle")
         .down_from(ids.rust_logo, 60.0)
         .align_middle_x_of(ids.canvas)
@@ -310,15 +257,11 @@ pub fn gui(ui: &mut conrod::UiCell, ids: &Ids, app: &mut DemoApp) {
         .color(app.ball_color)
         .x_y_relative_to(ids.xy_pad, ball_x, ball_y)
         .set(ids.ball, ui);
-    //////////////////////////////////
-    ///// NumberDialer, PlotPath /////
-    //////////////////////////////////
     widget::Text::new("NumberDialer and PlotPath")
         .down_from(ids.xy_pad, max_y - min_y + side * 0.5 + MARGIN)
         .align_middle_x_of(ids.canvas)
         .font_size(SUBTITLE_SIZE)
         .set(ids.dialer_title, ui);
-    // Use a `NumberDialer` widget to adjust the frequency of the sine wave below.
     let min = 0.5;
     let max = 200.0;
     let decimal_precision = 1;
@@ -331,7 +274,6 @@ pub fn gui(ui: &mut conrod::UiCell, ids: &Ids, app: &mut DemoApp) {
     {
         app.sine_frequency = new_freq;
     }
-    // Use the `PlotPath` widget to display a sine wave.
     let min_x = 0.0;
     let max_x = std::f32::consts::PI * 2.0 * app.sine_frequency;
     let min_y = -1.0;
@@ -342,19 +284,10 @@ pub fn gui(ui: &mut conrod::UiCell, ids: &Ids, app: &mut DemoApp) {
         .down(60.0)
         .align_middle_x_of(ids.canvas)
         .set(ids.plot_path, ui);
-    /////////////////////
-    ///// Scrollbar /////
-    /////////////////////
     widget::Scrollbar::y_axis(ids.canvas)
         .auto_hide(true)
         .set(ids.canvas_scrollbar, ui);
 }
-/// In most of the examples the `glutin` crate is used for providing the window context and
-/// events while the `glium` crate is used for displaying `conrod::render::Primitives` to the
-/// screen.
-///
-/// This `Iterator`-like type simplifies some of the boilerplate involved in setting up a
-/// glutin+glium event loop that works efficiently with conrod.
 pub struct EventLoop {
     ui_needs_update: bool,
     last_update: std::time::Instant,
@@ -366,23 +299,18 @@ impl EventLoop {
             ui_needs_update: true,
         }
     }
-    /// Produce an iterator yielding all available events.
     pub fn next(
         &mut self,
         events_loop: &mut glium::glutin::EventsLoop,
     ) -> Vec<glium::glutin::Event> {
-        // We don't want to loop any faster than 60 FPS, so wait until it has been at least 16ms
-        // since the last yield.
         let last_update = self.last_update;
         let sixteen_ms = std::time::Duration::from_millis(16);
         let duration_since_last_update = std::time::Instant::now().duration_since(last_update);
         if duration_since_last_update < sixteen_ms {
             std::thread::sleep(sixteen_ms - duration_since_last_update);
         }
-        // Collect all pending events.
         let mut events = Vec::new();
         events_loop.poll_events(|event| events.push(event));
-        // If there are no events and the `Ui` does not need updating, wait for the next event.
         if events.is_empty() && !self.ui_needs_update {
             events_loop.run_forever(|event| {
                 events.push(event);
@@ -393,11 +321,6 @@ impl EventLoop {
         self.last_update = std::time::Instant::now();
         events
     }
-    /// Notifies the event loop that the `Ui` requires another update whether or not there are any
-    /// pending events.
-    ///
-    /// This is primarily used on the occasion that some part of the `Ui` is still animating and
-    /// requires further updates to do so.
     pub fn needs_update(&mut self) {
         self.ui_needs_update = true;
     }

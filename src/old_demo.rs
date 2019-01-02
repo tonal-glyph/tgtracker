@@ -1,20 +1,13 @@
-//!
 //! A demonstration of all non-primitive widgets available in Conrod.
-//!
 //!
 //! Don't be put off by the number of method calls, they are only for demonstration and almost all
 //! of them are optional. Conrod supports `Theme`s, so if you don't give it an argument, it will
 //! check the current `Theme` within the `Ui` and retrieve defaults from there.
-//!
-
-#[cfg(all(feature="winit", feature="glium"))] #[macro_use] extern crate conrod;
-#[cfg(all(feature="winit", feature="glium"))] mod support;
-
+#[macro_use] extern crate conrod;
+mod support;
 fn main() {
     feature::main();
 }
-
-#[cfg(all(feature="winit", feature="glium"))]
 mod feature {
     extern crate find_folder;
     extern crate rand; // for making a random color.
@@ -22,7 +15,6 @@ mod feature {
     use conrod::backend::glium::glium;
     use conrod::backend::glium::glium::Surface;
     use support;
-
     /// This struct holds all of the variables used to demonstrate application data being passed
     /// through the widgets. If some of these seem strange, that's because they are! Most of these
     /// simply represent the aesthetic state of different parts of the GUI to offer visual feedback
@@ -58,9 +50,7 @@ mod feature {
         /// Envelope for demonstration of EnvelopeEditor.
         envelopes: Vec<(Vec<conrod::Point>, String)>,
     }
-
     impl DemoApp {
-
         /// Constructor for the Demonstration Application model.
         fn new() -> DemoApp {
             DemoApp {
@@ -97,14 +87,10 @@ mod feature {
                                        [1.0, 0.0], ], "Envelope B".to_string())],
             }
         }
-
     }
-
-
     pub fn main() {
         const WIDTH: u32 = 1100;
         const HEIGHT: u32 = 560;
-
         // Build the window.
         let mut events_loop = glium::glutin::EventsLoop::new();
         let window = glium::glutin::WindowBuilder::new()
@@ -114,41 +100,31 @@ mod feature {
             .with_vsync(true)
             .with_multisampling(4);
         let display = glium::Display::new(window, context, &events_loop).unwrap();
-
         // construct our `Ui`.
         let mut ui = conrod::UiBuilder::new([WIDTH as f64, HEIGHT as f64]).build();
-
         // Identifiers used for instantiating our widgets.
         let mut ids = Ids::new(ui.widget_id_generator());
-
         // Add a `Font` to the `Ui`'s `font::Map` from file.
         let assets = find_folder::Search::KidsThenParents(3, 5).for_folder("assets").unwrap();
         let font_path = assets.join("fonts/NotoSans/NotoSans-Regular.ttf");
         ui.fonts.insert_from_file(font_path).unwrap();
-
         // A type used for converting `conrod::render::Primitives` into `Command`s that can be used
         // for drawing to the glium `Surface`.
         let mut renderer = conrod::backend::glium::Renderer::new(&display).unwrap();
-
         // The image map describing each of our widget->image mappings (in our case, none).
         let image_map = conrod::image::Map::<glium::texture::Texture2d>::new();
-
         // Our demonstration app that we'll control with our GUI.
         let mut app = DemoApp::new();
-
         // Poll events from the window.
         let mut event_loop = support::EventLoop::new();
         'main: loop {
-
             // Handle all events.
             for event in event_loop.next(&mut events_loop) {
-
                 // Use the `winit` backend feature to convert the winit event to a conrod one.
                 if let Some(event) = conrod::backend::winit::convert_event(event.clone(), &display) {
                     ui.handle_event(event);
                     event_loop.needs_update();
                 }
-
                 match event {
                     glium::glutin::Event::WindowEvent { event, .. } => match event {
                         // Break from the loop upon `Escape`.
@@ -165,13 +141,11 @@ mod feature {
                     _ => (),
                 }
             }
-
             // We'll set all our widgets in a single function called `set_widgets`.
             {
                 let mut ui = ui.set_widgets();
                 set_widgets(&mut ui, &mut app, &mut ids);
             }
-
             // Render the `Ui` and then display it on the screen.
             if let Some(primitives) = ui.draw_if_changed() {
                 renderer.fill(&display, primitives, &image_map);
@@ -182,8 +156,6 @@ mod feature {
             }
         }
     }
-
-
     // In conrod, each widget must have its own unique identifier so that the `Ui` can keep track of
     // its state between updates.
     //
@@ -214,8 +186,6 @@ mod feature {
             envelope_editor_b,
         }
     }
-
-
     /// Set all `Widget`s within the User Interface.
     ///
     /// The first time this gets called, each `Widget`'s `State` will be initialised and cached within
@@ -224,7 +194,6 @@ mod feature {
     /// retrieved from a `Widget` in the case that it's `State` has changed in some way.
     fn set_widgets(ui: &mut conrod::UiCell, app: &mut DemoApp, ids: &mut Ids) {
         use conrod::{color, widget, Colorable, Borderable, Labelable, Positionable, Sizeable, Widget};
-
         // We can use this `Canvas` as a parent Widget upon which we can place other widgets.
         widget::Canvas::new()
             .border(app.border_width)
@@ -234,16 +203,13 @@ mod feature {
             .set(ids.canvas, ui);
         widget::Scrollbar::x_axis(ids.canvas).auto_hide(true).set(ids.canvas_y_scrollbar, ui);
         widget::Scrollbar::y_axis(ids.canvas).auto_hide(true).set(ids.canvas_x_scrollbar, ui);
-
         // Text example.
         widget::Text::new("Widget Demonstration")
             .top_left_with_margins_on(ids.canvas, 0.0, app.title_pad)
             .font_size(32)
             .color(app.bg_color.plain_contrast())
             .set(ids.title, ui);
-
         if app.show_button {
-
             // Button widget example button.
             if widget::Button::new()
                 .w_h(200.0, 50.0)
@@ -257,15 +223,11 @@ mod feature {
             {
                 app.bg_color = color::rgb(rand::random(), rand::random(), rand::random())
             }
-
         }
-
         // Horizontal slider example.
         else {
-
             // Create the label for the slider.
             let label = format!("Padding: {}", app.title_pad as i16);
-
             // Slider widget example slider(value, min, max).
             if let Some(new_pad) = widget::Slider::new(app.title_pad, 0.0, 670.0)
                 .w_h(200.0, 50.0)
@@ -279,12 +241,9 @@ mod feature {
             {
                 app.title_pad = new_pad;
             }
-
         }
-
         // Keep track of the currently shown widget.
         let shown_widget = if app.show_button { ids.button } else { ids.title_pad_slider };
-
         // Toggle widget example.
         if let Some(value) = widget::Toggle::new(app.show_button)
             .w_h(75.0, 75.0)
@@ -302,7 +261,6 @@ mod feature {
                 false => "OFF".to_string()
             }
         }
-
         macro_rules! color_slider {
             ($slider_id:ident, $bg_color:ident, $color:expr, $set_color:ident, $position:ident) => {{
                 let value = app.bg_color.$bg_color();
@@ -320,11 +278,9 @@ mod feature {
                 }
             }};
         }
-
         color_slider!(red_slider, red, color::rgb(0.75, 0.3, 0.3), set_red, down);
         color_slider!(green_slider, green, color::rgb(0.3, 0.75, 0.3), set_green, right);
         color_slider!(blue_slider, blue, color::rgb(0.3, 0.3, 0.75), set_blue, right);
-
         // Number Dialer widget example. (value, min, max, precision)
         for new_height in widget::NumberDialer::new(app.v_slider_height, 25.0, 250.0, 1)
             .w_h(260.0, 60.0)
@@ -337,7 +293,6 @@ mod feature {
         {
             app.v_slider_height = new_height;
         }
-
         // Number Dialer widget example. (value, min, max, precision)
         for new_width in widget::NumberDialer::new(app.border_width, 0.0, 15.0, 2)
             .w_h(260.0, 60.0)
@@ -351,18 +306,15 @@ mod feature {
         {
             app.border_width = new_width;
         }
-
         // A demonstration using widget_matrix to easily draw a matrix of any kind of widget.
         let (cols, rows) = (8, 8);
         let mut elements = widget::Matrix::new(cols, rows)
             .down(20.0)
             .w_h(260.0, 260.0)
             .set(ids.toggle_matrix, ui);
-
         // The `Matrix` widget returns an `Elements`, which can be used similar to an `Iterator`.
         while let Some(elem) = elements.next(ui) {
             let (col, row) = (elem.col, elem.row);
-
             // Color effect for fun.
             let (r, g, b, a) = (
                 0.5 + (elem.col as f32 / cols as f32) / 2.0,
@@ -370,7 +322,6 @@ mod feature {
                 1.0 - (elem.row as f32 / rows as f32) / 2.0,
                 1.0
             );
-
             // We can use `Element`s to instantiate any kind of widget we like.
             // The `Element` does all of the positioning and sizing work for us.
             // Here, we use the `Element` to `set` a `Toggle` widget for us.
@@ -381,7 +332,6 @@ mod feature {
                 app.bool_matrix[col][row] = new_value;
             }
         }
-
         // A demonstration using a DropDownList to select its own color.
         for selected_idx in widget::DropDownList::new(&app.ddl_colors, app.selected_idx)
             .w_h(150.0, 40.0)
@@ -405,7 +355,6 @@ mod feature {
                 _       => color::PURPLE,
             }
         }
-
         // Draw an xy_pad.
         for (x, y) in widget::XYPad::new(app.circle_pos[0], -75.0, 75.0, // x range.
                                          app.circle_pos[1], 95.0, 245.0) // y range.
@@ -423,13 +372,11 @@ mod feature {
             app.circle_pos[0] = x;
             app.circle_pos[1] = y;
         }
-
         // Draw a circle at the app's circle_pos.
         widget::Circle::fill(15.0)
             .xy_relative_to(ids.circle_position, app.circle_pos)
             .color(app.ddl_color)
             .set(ids.circle, ui);
-
         // Draw two TextBox and EnvelopeEditor pairs to the right of the DropDownList flowing downward.
         for i in 0..2 {
             let &mut (ref mut env, ref mut text) = &mut app.envelopes[i];
@@ -438,7 +385,6 @@ mod feature {
                 1 => (ids.text_box_b, ids.envelope_editor_b, 1.0, 1.0),
                 _ => unreachable!(),
             };
-
             // A text box in which we can mutate a single line of text, and trigger reactions via the
             // `Enter`/`Return` key.
             for event in widget::TextBox::new(text)
@@ -455,7 +401,6 @@ mod feature {
                     widget::text_box::Event::Update(string) => *text = string,
                 }
             }
-
             // Draw an EnvelopeEditor. (&[Point], x_min, x_max, y_min, y_max).
             for event in widget::EnvelopeEditor::new(env, 0.0, 1.0, 0.0, env_y_max)
                 .down(10.0)
@@ -473,14 +418,5 @@ mod feature {
                 event.update(env);
             }
         }
-
-    }
-}
-
-#[cfg(not(all(feature="winit", feature="glium")))]
-mod feature {
-    pub fn main() {
-        println!("This example requires the `winit` and `glium` features. \
-                 Try running `cargo run --release --features=\"winit glium\" --example <example_name>`");
     }
 }
