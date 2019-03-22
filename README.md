@@ -19,6 +19,7 @@ Another powerful way to generate and process sound is a graph-based interface wi
 
 ## Nice-to-haves but fraught with issues
 
+- I'd want to support new technologies like Vulkan and Wayland, but I'm torn right now. The ideas I have for the document module like SVGs of FAUST formulas is pushing me towards a web-based frontend. azul might be the best choice for that.
 - Able to import/play many module formats through libopenmpt/libxmp/oxdz
 - VST2/3, DSSI, LADSPA, LV2, AU plugin support
 - A scripting API
