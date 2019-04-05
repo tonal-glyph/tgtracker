@@ -1,7 +1,10 @@
 [package]
 name = "tgtracker"
 version = "0.1.0-alpha"
-authors = ["Scalar Waves <scalarwaves@null.net>"]
+authors = [
+    "Andrew Prentice <scalarwaves@null.net>",
+    "Micah Johnston <micah@glowcoil.com>"
+]
 license = "MIT OR Apache-2.0"
 readme = "README.md"
 repository = "https://github.com/tonal-glyph/tgtracker.git"
@@ -11,18 +14,9 @@ name = "tgtracker"
 path = "src/main.rs"
 
 [dependencies]
-# azul = "0.1.0"
-daggy = "0.6.0"
-rand = "0.5.5"
-conrod = "0.61"
-conrod_derive = "0.1.2"
-dsp-chain = "0.13"
-find_folder = "0.3.0"
-nannou = "0.8.0"
-# oxdz = { git = "https://github.com/cmatsukoa/oxdz" }
-petgraph = "0.4"
-rusttype = "0.7.3"
-sample = "0.10.0"
-state = "0.4.1"
-# pcm-flow = "0.5.0"
-# rutie = "0.5.0"
+dsp-chain = "0.13.1"  #digital signal processing graphs
+glyph_brush = "0.4.1"  #text rendering, reexports rusttype
+lyon = "0.13.1"  #SVG-compatible path tesselator
+nannou = "0.8.0"  #reexports conrod, cpal, glium, find_folder
+sdl2 = "0.32.1" #hardware abstraction
+stretch = "0.1.12" #flexbox implementation

@@ -1,0 +1,6 @@
+- [ ] File dialog
+- [ ] About dialog
+- [ ] Quit dialog
+- [ ] Save changes dialog
+- [ ] Overwrite dialog
+- [ ] Render to disk dialog

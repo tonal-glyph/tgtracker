@@ -1,0 +1,12 @@
+- [ ] Waveform view
+- [ ] Spectral view
+- [ ] Zoom/fit-to-window/scroll
+- [ ] Multiple follow-along lines when key is pressed repeatedly
+- [ ] Normalize
+- [ ] Fade in
+- [ ] Fade out
+- [ ] Cut/copy/paste
+- [ ] Load from disk
+- [ ] Save to disk
+- [ ] Apply effect (offline processing w/ MrsWatson?)
+- [ ] Record from input

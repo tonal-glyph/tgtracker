@@ -1,35 +1,45 @@
-#![allow(dead_code)]
-#![allow(unsafe_code)]
-#![allow(missing_docs)]
-#![allow(unused_imports)]
-#![allow(unused_variables)]
-#![allow(unused_attributes)]
-#[macro_use()] extern crate conrod;
-#[macro_use()] extern crate conrod_derive;
-#[macro_use()] extern crate dsp;
-extern crate find_folder;
-extern crate rusttype;
-#[macro_use()] extern crate nannou;
-extern crate petgraph;
-extern crate rand;
+#![allow(
+    dead_code,
+    missing_docs,
+    unsafe_code,
+    unused_attributes,
+    unused_imports,
+    unused_variables,
+)]
+extern crate dsp;
+extern crate glyph_brush;
+extern crate lyon;
+extern crate nannou;
+extern crate sdl2;
+extern crate stretch;
+use nannou as nn;
+use nn::daggy;
+use nn::glium;
+use nn::audio::cpal;
+use nn::audio::sample;
+use nn::ease::pennereq;
+use nn::image;
+use nn::osc::rosc;
+use nn::rand;
+use nn::ui::conrod;
+pub mod audio;
 pub mod dsp_graph;
-pub mod editor;
-pub mod fileops;
-pub mod instrument;
-pub mod pattern;
-pub mod sample;
+pub mod osc;
 pub mod support;
-fn main() {
-    use dsp_graph;
-    use editor;
-    use fileops;
-    use instrument;
-    use pattern;
-    use sample;
-    dsp_graph::graph();
-    editor::main();
-    // fileops::main();
-    instrument::main();
-    pattern::main();
-    sample::main();
+pub mod ui;
+pub fn main() {
+    use ui;
+    ui::main();
 }
+
+/*
+nannou root: reexports daggy, find_folder, glium
+nannou::audio reexports cpal, sample
+nannou::ease reexports pennereq
+nannou::image reexports image
+nannou::math reexports approx, cgmath
+nannou::noise rexports noise
+nannou::osc reexports rosc
+nannou::rand reexports rand
+nannou::ui reexports conrod
+*/

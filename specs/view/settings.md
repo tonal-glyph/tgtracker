@@ -1,0 +1,14 @@
+- [ ] Tuning A440 or A432
+- [ ] Built-in tuner for guitars, sound files, etc.
+- [ ] Current octave
+- [ ] Current theme
+- [ ] Sample rate (44100Hz default)
+- [ ] Sample bit-depth (32-bit default)
+- [ ] Interpolation (None, Linear, Cubic)
+- [ ] Input audio device (hw:0, etc.)
+- [ ] Output audio device
+- [ ] Input MIDI device
+- [ ] Output MIDI device
+- [ ] Keybindings (setups like FT2 style?)
+- [ ] Load extra formats (through rodio crate)
+- [ ] Defaults
