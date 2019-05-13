@@ -3,7 +3,7 @@
 The "graph editor" is a node graph like the one BuzzTracker made famous. Conrod and dsp-chain both use daggy, which is based on petgraph. Conrod has a node graph example in its codebase.
 
 - [ ] Node
-    - [ ] Sound file (recording, "sample")
+    - [ ] Sound file ("phrase", recording, "sample")
     - [ ] VST plugin (instrument/effect)
     - [ ] AudioUnit
     - [ ] LV2 plugin
@@ -13,6 +13,6 @@ The "graph editor" is a node graph like the one BuzzTracker made famous. Conrod 
 - [ ] Socket/port
     - [ ] Input, may be mono or stereo
     - [ ] Output, may be mono or stereo
-- [ ] Connection (edge)
+- [ ] Connection/Direction (edge)
     - [ ] Send targets
     - [ ] Receive targets

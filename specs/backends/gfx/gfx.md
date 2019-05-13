@@ -1,5 +1,5 @@
 - supported backends
-    - [ ] gl - agnostic
+    - [x] gl - agnostic
     - [ ] vulkan - agnostic
     - [ ] metal - OSX
     - [ ] dx11 - Windows

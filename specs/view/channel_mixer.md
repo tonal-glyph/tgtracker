@@ -10,3 +10,4 @@ Traditional mixing board style interface for managing all of a "song's" channels
     - [ ] Gain
     - [ ] Filter
     - [ ] Panning
+- [ ] Routing busses for mixdowns and stuff

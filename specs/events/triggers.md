@@ -8,3 +8,4 @@
     - [ ] Play song
     - [ ] Play pattern in a loop
     - [ ] Stop/pause
+- [ ] Keybindings

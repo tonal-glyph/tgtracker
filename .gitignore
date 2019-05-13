@@ -5,3 +5,4 @@ Makefile.toml
 *.code-workspace
 rustfmt*
 tokamak*
+.vscode/cquery_cached_index
