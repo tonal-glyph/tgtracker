@@ -14,7 +14,7 @@ after_failure:
 os:
     - linux
 before_install:
-    - if [ "${TRAVIS_OS_NAME}" = "linux" ]; then sudo apt-get update --fix-missing && sudo apt-get install -y cmake ninja-build libsndfile1-dev libpulse-dev libasound2-dev libsdl-dev liblo-dev &; fi
-    - if [ "${TRAVIS_OS_NAME}" = "linux" ]; then git clone https://github.com/andrewrk/libsoundio.git && cd libsoundio && mkdir build && cd build && cmake .. -G Ninja && ninja && sudo ninja install &; fi
+    - sudo apt-get update --fix-missing && sudo apt-get install -y cmake ninja-build libsndfile1-dev libpulse-dev libasound2-dev libsdl-dev liblo-dev
+    - git clone https://github.com/andrewrk/libsoundio.git && cd libsoundio && mkdir build && cd build && cmake .. -G Ninja && ninja && sudo ninja install
 script:
     - cargo test
