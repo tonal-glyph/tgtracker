@@ -1,5 +1,7 @@
 # tonal glyph tracker
 
+[![Build Status](https://travis-ci.org/tonal-glyph/tgtracker.svg?branch=master)](https://travis-ci.org/tonal-glyph/tgtracker)
+
 IMPORTANT: This project is still in the planning and sandbox phase. Please see Projects and Issues for current progress.
 
 tgtracker will be a digital audio workstation with a tracker-inspired interface. It will be written primarily in Rust. The [nannou](https://github.com/nannou-org/nannou) creative coding framework has colinear goals with tgtracker and reexports crates I plan to use anyway, so for now it's part of the family.
