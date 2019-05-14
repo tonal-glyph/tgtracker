@@ -28,11 +28,11 @@ extern crate pitch;
 extern crate rand;
 extern crate rb;
 extern crate rosc;
-extern crate rsoundio;
+// extern crate rsoundio;
 extern crate rustfft;
 extern crate sample;
 extern crate samplerate;
-extern crate sdl2;
+// extern crate sdl2;
 
 #[macro_use] extern crate serde_derive;
 extern crate serde;
@@ -57,12 +57,12 @@ use yansi::Paint;
 /// Boot main thread
 fn main() {
     println!("01 initialize {}...", Paint::yellow("audio"));
-    backend::audio::init::init();
+    // backend::audio::init::init();
     println!("02 initialize {}...", Paint::green("midi"));
     backend::audio::midi::init();
     println!("03 initialize {}...", Paint::blue("osc"));
     backend::audio::osc::init();
     println!("04 initialize {}...", Paint::cyan("ui"));
     // backend::keybindings::tgtracker_section_switching();
-    frontend::conrod_ui::run();
+    // frontend::conrod_ui::run();
 }

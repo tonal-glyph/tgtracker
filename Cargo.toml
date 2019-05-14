@@ -48,11 +48,11 @@ pitch = "0.1.3"                 # determine pitch & volume
 rand = "0.6"                    # random number stuff
 rb = "0.3.2"                    # ringbuffer
 rosc = "0.1.6"                  # open sound control
-rsoundio = "0.1.6"              # x-platform audio io
+# rsoundio = "0.1.6"              # x-platform audio io
 rustfft = "3.0.0"               # compute any size FFT in O(nlogn) time
 sample = "0.10.0"               # PCM DSP
 samplerate = "0.2.0"            # samplerate conversion
-sdl2 = "0.32.2"                 # hardware abstraction
+# sdl2 = "0.32.2"                 # hardware abstraction
 
 serde = "1.0.91"                # sweet sweet serde
 serde_derive = "1.0.91"         # derive

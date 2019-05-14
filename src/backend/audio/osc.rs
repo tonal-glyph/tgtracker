@@ -22,9 +22,9 @@ pub fn handle_packet(packet: OscPacket) {
     }
 }
 
-fn get_addr_from_arg(arg: &str) -> SocketAddrV4 {
-    SocketAddrV4::from_str(arg).unwrap()
-}
+// fn get_addr_from_arg(arg: &str) -> SocketAddrV4 {
+//     SocketAddrV4::from_str(arg).unwrap()
+// }
 
 // serde_osc stuff
 
