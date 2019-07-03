@@ -1,5 +1,7 @@
 # tonal glyph tracker
 
+<p align="center"><img src = "https://raw.githubusercontent.com/tonal-glyph/tgtracker/master/logo.png" width="300" height="300"></p>
+
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/2b4d117015214886905691720955eb85)](https://app.codacy.com/app/scalarwaves/tgtracker?utm_source=github.com&utm_medium=referral&utm_content=tonal-glyph/tgtracker&utm_campaign=Badge_Grade_Dashboard)
 [![Build Status](https://travis-ci.org/tonal-glyph/tgtracker.svg?branch=master)](https://travis-ci.org/tonal-glyph/tgtracker)
 
