@@ -15,6 +15,6 @@ os:
     - linux
 before_install:
     - sudo apt-get update --fix-missing && sudo apt-get install -y cmake libsndfile1-dev libpulse-dev libasound2-dev libsdl-dev liblo-dev
-    - git clone https://github.com/andrewrk/libsoundio.git && cd libsoundio && mkdir build && cd build && cmake .. && make && sudo make install
+    - git clone https://github.com/andrewrk/libsoundio.git && cd libsoundio && mkdir build && cd build && cmake .. && make && sudo make install && export LD_CONFIG="$LDCONFIG:/usr/local/lib"
 script:
     - cargo test --all -- --nocapture
