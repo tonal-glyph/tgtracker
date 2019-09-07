@@ -7,7 +7,6 @@ rustfmt*
 .vscode/cquery_cached_index
 node_modules
 rls*.log
-tango.stamp
 .ccls-cache
 .dist
 ./Cargo.lock
