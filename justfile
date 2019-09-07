@@ -1,5 +1,5 @@
-bt='0'
-export RUST_BACKTRACE=bt
+bt:='0'
+export RUST_BACKTRACE:=bt
 # run clippy
 clip:
 	cargo clippy
@@ -17,7 +17,10 @@ form:
 	rustfmt --print-config default rustfmt.toml
 #run tests
 test: build
-	cargo test
+	cargo test --all -- --nocapture
+#delete logs
+dlog:
+	rm -v *.log
 #spam tests, uses figlet/toilet
 # @spam:
 # 	{ \
@@ -30,7 +33,7 @@ filter PATTERN: build
 	cargo test {{PATTERN}}
 # test with backtrace
 backtrace:
-	RUST_BACKTRACE=1 cargo test
+	RUST_BACKTRACE:=1 cargo test
 #build project
 build:
 	cargo build
@@ -38,9 +41,9 @@ build:
 check:
 	cargo check
 #watch project
-watch COMMAND='test':
-	cargo watch --clear --exec {{COMMAND}}
-version = `sed -En 's/version[[:space:]]*=[[:space:]]*"([^"]+)"/v\1/p' Cargo.toml`
+# watch COMMAND='test':
+# 	cargo watch --clear --exec {{COMMAND}}
+version := `sed -En 's/version[[:space:]]*=[[:space:]]*"([^"]+)"/v\1/p' Cargo.toml`
 # publish to crates.io
 # publish: lint clippy test
 # 	git branch | grep '* master'
@@ -90,6 +93,9 @@ repl:
 rfmt:
     @rustfmt -q --emit files src/**/*.rs
     @echo "Formatted Rust code."
+#build for musl
+# musl:
+#     PKG_CONFIG_ALLOW_CROSS:=1 RUSTFLAGS=-Ctarget-cpu=generic cargo build --target=x86_64-unknown-linux-musl --release
 # Local Variables:
 # mode: makefile
 # End:

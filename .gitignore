@@ -1,8 +1,13 @@
 **/**/target
 **/*.rs.bk
-justfile
+# justfile
 Makefile.toml
 *.code-workspace
 rustfmt*
-tokamak*
 .vscode/cquery_cached_index
+node_modules
+rls*.log
+tango.stamp
+.ccls-cache
+.dist
+./Cargo.lock

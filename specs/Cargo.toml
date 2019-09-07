@@ -1,0 +1,16 @@
+[package]
+name = "tgtracker_specs"
+description = "Literate programming specification testing crate for tgtracker"
+version = "0.1.0"
+license = "MIT OR Apache-2.0"
+authors = ["Andrew Prentice <scalarwaves@null.net>"]
+edition = "2018"
+build = "tango-build.rs"
+
+[build-dependencies]
+tgtracker_core = { path = "../core", version = "0.1.0" }
+tango = "0.8.2"
+
+[lib]
+name = "tgtracker_specs"
+path = "src/lib.rs"

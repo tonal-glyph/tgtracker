@@ -1,6 +1,6 @@
 [package]
 name = "tgtracker"
-description = "A music tracker for the 21st century"
+description = "A music tracker from the future"
 version = "0.1.0-alpha"
 authors = [
     "Andrew Prentice <scalarwaves@null.net>",
@@ -8,6 +8,7 @@ authors = [
 license = "MIT OR Apache-2.0"
 readme = "README.md"
 repository = "https://github.com/tonal-glyph/tgtracker.git"
+categories = ["multimedia::audio"]
 
 [package.metadata.docs.rs]
 all-features = true
@@ -17,57 +18,44 @@ name = "tgtracker"
 path = "src/main.rs"
 
 [dependencies]
-actix = "0.8.2"                 # actor framework
-actix-lua = "0.7.0"             # lua actors
-
-conrod = "0.61.1"               # gui framework
-conrod_core = "0.64.0"          # core library
-conrod_derive = "0.64.0"        # derive
-conrod_example_shared = "0.64.0"# support code for ui
-conrod_gfx = "0.64.0"           # gfx backend
-conrod_winit = "0.64.0"         # winit backend
-
-dsp-chain = "0.13.1"            # digital signal processing graphs
-envelope = "0.8.1"              # envelopes
-find_folder = "0.3.0"           # loading assets
-
-gfx = "0.17.0"                  # graphics backend
-gfx_core = "0.8.0"              # backend core
-gfx_window_glutin = "0.28.0"    # gfx windowing w/ glutin
-
-glium = "0.24.0"                # opengl abstraction
-glutin = "0.19.0"               # x-platform opengl contexts
-glyph_brush = "0.5.0"           # fast text rendering, reexports rusttype
-hound = "3.4.0"                 # wav encoding/decoding
-image = "0.21.1"                # image stuff
-keybind = "0.1.0"               # trigger logic on keybinding, wrapper around `device_query`
-libloading = "0.5.0"            # load plugins
-midir = "0.5.0"                 # x-platform realtime MIDI IO
-petgraph = "0.4.13"             # graph data structures
-pitch = "0.1.3"                 # determine pitch & volume
-rand = "0.6"                    # random number stuff
-rb = "0.3.2"                    # ringbuffer
-rosc = "0.1.6"                  # open sound control
-# rsoundio = "0.1.6"              # x-platform audio io
-rustfft = "3.0.0"               # compute any size FFT in O(nlogn) time
-sample = "0.10.0"               # PCM DSP
-samplerate = "0.2.0"            # samplerate conversion
-# sdl2 = "0.32.2"                 # hardware abstraction
-
-serde = "1.0.91"                # sweet sweet serde
-serde_derive = "1.0.91"         # derive
-serde_bytes = "0.11.1"          # for wrapping osc blobs
-serde_osc = "0.4.2"             # serde for osc
-
-ttf-noto-sans = "0.1.1"         # open source font
-winit = "0.18.0" # windowing library
-yansi = "0.5.0"                 # easy terminal coloring
+tgtracker_specs = { path = "specs", version = "0.1.0" }
+tgtracker_core = { path = "core", version = "0.1.0" }
 
 [dev-dependencies]
-mockstream = "0.0.3"            # mock read+write streams
-proptest = "0.9.3"              # property testing
+# grcov = "0.5.0"                 # code coverage
+# mockstream = "0.0.3"            # mock read+write streams
+# proptest = "0.9.4"              # property testing
 # tarpaulin = "0.1.0"             # code coverage
 
 [badges]
 travis-ci = { repository = "tonal-glyph/tgtracker" }
 codecov = { repository = "tonal-glyph/tgtracker" }
+maintenance = { status = "experimental" }
+
+[profile.dev]
+opt-level = 0
+debug = true
+rpath = false
+lto = false
+debug-assertions = true
+codegen-units = 16
+panic = 'unwind'
+incremental = true
+overflow-checks = true
+
+[profile.release]
+opt-level = 3
+debug = false
+rpath = false
+lto = true
+debug-assertions = false
+codegen-units = 16
+panic = 'unwind'
+incremental = false
+overflow-checks = true
+
+[workspace]
+members = [
+    "core",
+    "specs",
+]

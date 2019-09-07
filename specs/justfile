@@ -1,0 +1,10 @@
+build:
+  @cargo build
+test: build
+  @cargo test -- --nocapture
+#output default rustfmt.toml
+form:
+	rustfmt --print-config default rustfmt.toml
+rfmt:
+    @rustfmt -q --emit files src/**/*.rs
+    @echo "Formatted Rust code."

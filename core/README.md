@@ -1,0 +1,5 @@
+# tgtracker_core
+
+Core functionality in tgtracker should be **primarily** in Rust, for speed and accuracy purposes. After much experimentation with binding to and transpiling C/C++ code to Rust, I've realized that automated tools are somewhat young and though many great bindings exist for various projects, creating your own for non-existent tools you need isn't easy to get right. Most often the best bindings are semi-handwritten by folks familiar with these languages. I am still new to all this so the first specification phase will focus on the core and how much code can be pure Rust.
+
+Early on in my (ongoing) wild tracker idea phase I wanted to incorporate the ChucK language because it was so fun and concise. I soon learned this presented a challenge and in the process learned alot about both ecosystems.
