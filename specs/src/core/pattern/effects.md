@@ -1,5 +1,16 @@
 ## MilkyTracker Effects
 
+```rust
+#[derive(Copy, Clone, Debug, Eq, PartialEq)]
+pub struct Effect {
+
+}
+#[derive(Copy, Clone, Debug, Eq, PartialEq)]
+pub struct EffectArgs {
+
+}
+```
+
 ### Glossary
 
 - **BPM**	Traditionally Beats Per Minute, but in tracker terminology it defines the speed of ticks.

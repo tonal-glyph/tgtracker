@@ -7,8 +7,13 @@ authors = ["Andrew Prentice <scalarwaves@null.net>"]
 edition = "2018"
 build = "tango-build.rs"
 
+[dependencies]
+envelope = "0.8.1"
+include-lua = "0.1.4"
+keybind = "0.1.0"
+
+
 [build-dependencies]
-tgtracker_core = { path = "../core", version = "0.1.0" }
 tango = "0.8.2"
 
 [lib]

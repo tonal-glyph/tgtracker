@@ -31,6 +31,7 @@
 - [ ] Vibrato (rate, depth, sweep, type)
 - [ ] Volume envelope
 
+```c
     // functions
     void resetConfig(void);
     uint8_t loadConfig(uint8_t showErrorFlag);
@@ -165,3 +166,4 @@
     void sbPalBPos(int32_t pos);
     void sbPalContrastPos(int32_t pos);
     void sbMIDISens(int32_t pos);
+```

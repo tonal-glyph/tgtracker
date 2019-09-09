@@ -2,25 +2,25 @@ bt:='0'
 export RUST_BACKTRACE:=bt
 # run clippy
 clip:
-	cargo clippy
+	@cargo clippy
 # run application
 run:
-	cargo run
+	@cargo run
 #for each git submodle, pull
 subf:
-    git submodule foreach git pull origin master
+    @git submodule foreach git pull origin master
 #init git submodules
 subu:
-    git submodule update --init --recursive
+    @git submodule update --init --recursive
 #output default rustfmt.toml
 form:
-	rustfmt --print-config default rustfmt.toml
+	@rustfmt --print-config default rustfmt.toml
 #run tests
 test: build
-	cargo test --all -- --nocapture
+	@cargo test --all -- --nocapture
 #delete logs
 dlog:
-	rm -v *.log
+	@rm -v *.log
 #spam tests, uses figlet/toilet
 # @spam:
 # 	{ \
@@ -30,16 +30,16 @@ dlog:
 # 	} | less
 # only run tests matching PATTERN
 filter PATTERN: build
-	cargo test {{PATTERN}}
+	@cargo test {{PATTERN}}
 # test with backtrace
 backtrace:
 	RUST_BACKTRACE:=1 cargo test
 #build project
 build:
-	cargo build
+	@cargo build
 #check project
 check:
-	cargo check
+	@cargo check
 #watch project
 # watch COMMAND='test':
 # 	cargo watch --clear --exec {{COMMAND}}
@@ -73,7 +73,7 @@ sloc:
 	@cat src/*.rs | sed '/^\s*$/d' | wc -l
 #run tokei
 toke:
-	tokei
+	@tokei
 #check for FIXME/TODO and long lines
 @lint:
 	echo Checking for FIXME/TODO...

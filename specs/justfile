@@ -1,10 +1,42 @@
-build:
-  @cargo build
-test: build
-  @cargo test -- --nocapture
+# run clippy
+clip:
+	@cargo clippy
+# run application
+run:
+	@cargo run
+#for each git submodle, pull
+subf:
+		@git submodule foreach git pull origin master
+#init git submodules
+subu:
+		@git submodule update --init --recursive
 #output default rustfmt.toml
 form:
-	rustfmt --print-config default rustfmt.toml
+		@rustfmt --print-config default rustfmt.toml
+#delete logs
+dlog:
+	@rm -v *.log
+# build specs
+build:
+	@cargo build
+#build and test
+test: build
+	@cargo test -- --nocapture
+#format Rust code
 rfmt:
-    @rustfmt -q --emit files src/**/*.rs
-    @echo "Formatted Rust code."
+		@rustfmt -q --emit files src/**/*.rs
+		@echo "Formatted Rust code."
+#generate changelog
+clog:
+	@changelog -vP -o CHANGELOG.md
+# clean ALL artifacts
+clean:
+		@rm -rf **/target
+		@rm -rfv src/**/*.rs
+		@cargo clean -q
+toke: clean
+	@tokei
+# Local Variables:
+# mode: makefile
+# End:
+# vim: set ft=make :
