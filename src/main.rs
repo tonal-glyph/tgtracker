@@ -12,7 +12,7 @@ use std::env;
 use std::process::Command;
 fn main() {
     println!("Opening alacritty for terminal interface...");
-    Command::new("alacritty")
+    Command::new("bin/alacritty")
         .spawn()
         .expect("failed to run alacritty")
         .wait()
@@ -33,7 +33,7 @@ mod tests {
     // }
     #[test]
     fn test_alacritty() {
-        Command::new("alacritty")
+        Command::new("bin/alacritty")
             .arg("-V")
             .spawn()
             .expect("failed to run alacritty")

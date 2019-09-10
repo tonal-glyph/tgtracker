@@ -11,6 +11,7 @@ build = "tango-build.rs"
 envelope = "0.8.1"
 include-lua = "0.1.4"
 keybind = "0.1.0"
+rlua = "0.16.3"
 
 
 [build-dependencies]
