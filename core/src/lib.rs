@@ -1,10 +1,10 @@
 // extern crate cpal;
 // extern crate daggy;
 // extern crate dsp;
-extern crate envelope;
+// extern crate envelope;
 // extern crate hertz;
 // extern crate hound;
-extern crate keybind;
+// extern crate keybind;
 // extern crate libloading;
 // extern crate midir;
 // extern crate panning;
@@ -23,8 +23,3 @@ extern crate keybind;
 // extern crate serde_osc;
 // extern crate spin_sleep;
 // extern crate yansi;
-pub mod audio;
-pub mod config;
-pub mod tracker;
-pub mod video;
-

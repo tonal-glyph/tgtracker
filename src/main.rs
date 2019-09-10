@@ -8,11 +8,20 @@
 
 //! `tgtracker` boots the main thread and loads various windows
 #![allow(unused_imports)]
+extern crate tgtracker_core;
 use std::env;
 use std::process::Command;
 fn main() {
-    println!("Opening alacritty for terminal interface...");
+    println!("Opening bundled alacritty for terminal interface...");
+    open_alacritty();
+}
+/// Opens bundled alacritty to send console commands to tgtracker
+fn open_alacritty() {
     Command::new("bin/alacritty")
+        .arg("--live-config-reload")
+        .arg("--persistent-logging")
+        .arg("--working-directory")
+        .arg(".")
         .spawn()
         .expect("failed to run alacritty")
         .wait()
@@ -22,15 +31,15 @@ fn main() {
 #[cfg(test)]
 mod tests {
     use std::process::Command;
-    // #[test]
-    // fn test_ruck() {
-    //     Command::new("ruck")
-    //         .arg("--help")
-    //         .spawn()
-    //         .expect("failed to run ruck")
-    //         .wait()
-    //         .expect("failed to wait for subprocess");
-    // }
+    #[test]
+    fn test_ruck() {
+        Command::new("bin/ruck")
+            .arg("--version")
+            .spawn()
+            .expect("failed to run ruck")
+            .wait()
+            .expect("failed to wait for subprocess");
+    }
     #[test]
     fn test_alacritty() {
         Command::new("bin/alacritty")

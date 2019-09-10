@@ -358,10 +358,6 @@ dependencies = [
 [[package]]
 name = "tgtracker_core"
 version = "0.1.0"
-dependencies = [
- "envelope 0.8.1 (registry+https://github.com/rust-lang/crates.io-index)",
- "keybind 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
-]
 
 [[package]]
 name = "tgtracker_specs"

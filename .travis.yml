@@ -15,5 +15,6 @@ os:
     - linux
 before_install:
     - sudo apt-get update --fix-missing && sudo apt-get install -y cmake libsndfile1-dev libpulse-dev libasound2-dev libsdl-dev liblo-dev
+    - sudo cp bin/chuck /usr/bin/
 script:
     - cargo test --all -- --nocapture

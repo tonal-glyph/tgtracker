@@ -32,7 +32,6 @@ clog:
 # clean ALL artifacts
 clean:
 		@rm -rf **/target
-		@rm -rfv src/**/*.rs
 		@cargo clean -q
 toke: clean
 	@tokei

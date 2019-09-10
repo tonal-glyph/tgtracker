@@ -9,4 +9,4 @@ node_modules
 rls*.log
 .ccls-cache
 .dist
-./Cargo.lock
+Cargo.lock
