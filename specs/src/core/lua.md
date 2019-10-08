@@ -1,6 +1,3 @@
-- [ ] lua-jit-sys
-- [ ] luvi for packaging lua addons
-
 ```rust
 #![allow(unused_imports)]
 #[cfg(test)]

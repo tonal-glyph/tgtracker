@@ -4,7 +4,7 @@
     unused_imports,
 )]
 
-use crate::core::backends::settings::{Octave, Tuning};
+use crate::core::settings::{Octave, Tuning};
 use crate::core::pattern::effects::{Effect, EffectArgs};
 
 /// Used to define frequencies for each note based on Tuning
@@ -13,30 +13,31 @@ pub struct BaseNote {
     /// Use default tuning A440
     tuning: bool,
 }
-// impl BaseNote {
-//     fn set_a_440(t: self::tuning) -> u32 {
-//         if t {
-//             440
-//         } else {
-//             440
-//         }
-//     }
-//     fn set_a_432(t: self::tuning) -> u32 {
-//         if !t {
-//             432
-//         } else {
-//             440
-//         }
-//     }
-// }
+impl BaseNote {
+    /// Returns the frequency in Hz for middle A
+    fn set_a_440(t: Self) -> u32 {
+        if t.tuning {
+            440
+        } else {
+            440
+        }
+    }
+    fn set_a_432(t: Self) -> u32 {
+        if !t.tuning {
+            432
+        } else {
+            440
+        }
+    }
+}
 #[derive(Copy, Clone, Debug, Eq, PartialEq)]
 pub struct Key {
-
+    pub note: Scale,
 }
 #[derive(Copy, Clone, Debug, Eq, PartialEq)]
 pub struct Coordinates {
-    // x: u32,
-    // y: u32,
+    pub x: u32,
+    pub y: u32,
 }
 
 #[derive(Copy, Clone, Debug, Eq, PartialEq)]

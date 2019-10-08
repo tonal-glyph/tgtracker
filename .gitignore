@@ -1,6 +1,5 @@
 **/**/target
 **/*.rs.bk
-# justfile
 Makefile.toml
 *.code-workspace
 rustfmt*
@@ -10,3 +9,7 @@ rls*.log
 .ccls-cache
 .dist
 Cargo.lock
+.vscode/browse.vc.*
+.vscode/.syncthing*
+.history
+specs/src/**/*.rs

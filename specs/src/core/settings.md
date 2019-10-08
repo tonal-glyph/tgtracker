@@ -1,7 +1,9 @@
-//@ ## Settings Control Panel
-//@
-//@ Gets/sets tuning of A4 to 440Hz or 432Hz RADIO
-//@ Midi note 69
+## Settings Control Panel
+
+Gets/sets tuning of A4 to 440Hz or 432Hz RADIO
+Midi note 69
+
+```rust
 #[derive(Copy, Clone, Debug, Eq, PartialEq)]
 pub enum Tuning {
     A440 = 440,
@@ -17,7 +19,11 @@ impl Default for Tuning {
         Tuning::A440
     }
 }
-//@ Gets/sets current octave UP/DOWN buttons
+```
+
+Gets/sets current octave UP/DOWN buttons
+
+```rust
 #[derive(Copy, Clone, Debug, Eq, PartialEq)]
 pub enum Octave {
     C1 = 1,
@@ -48,7 +54,11 @@ impl Default for Octave {
         Octave::C4
     }
 }
-//@ Gets/sets current sample rate RADIO
+```
+
+Gets/sets current sample rate RADIO
+
+```rust
 #[derive(Copy, Clone, Debug, Eq, PartialEq)]
 pub enum SampleRate {
     KHz44100 = 44100,
@@ -70,7 +80,11 @@ impl Default for SampleRate {
         SampleRate::KHz48000
     }
 }
-//@ Gets/sets sample bit depth RADIO
+```
+
+Gets/sets sample bit depth RADIO
+
+```rust
 #[derive(Copy, Clone, Debug, Eq, PartialEq)]
 pub enum SampleBitDepth {
     Bit16 = 16,
@@ -91,7 +105,11 @@ impl Default for SampleBitDepth {
         SampleBitDepth::Bit32
     }
 }
-//@ Gets/sets interpolation algorithm RADIO
+```
+
+Gets/sets interpolation algorithm RADIO
+
+```rust
 #[derive(Copy, Clone, Debug, Eq, PartialEq)]
 pub enum Interpolation {
     None,
@@ -118,7 +136,11 @@ impl Default for Interpolation {
         Interpolation::Linear
     }
 }
-//@ Gets/sets current theme DROPDOWN
+```
+
+Gets/sets current theme DROPDOWN
+
+```rust
 #[derive(Copy, Clone, Debug, Eq, PartialEq)]
 pub enum CurrentTheme {
     DarkTheme,
@@ -140,8 +162,12 @@ impl Default for CurrentTheme {
         CurrentTheme::DefaultTheme
     }
 }
-//@ Gets/sets current keybindings mode DROPDOWN
-//@ TGTracker's bindings are modeled after MilkyTracker's defaults
+```
+
+Gets/sets current keybindings mode DROPDOWN
+TGTracker's bindings are modeled after MilkyTracker's defaults
+
+```rust
 #[derive(Copy, Clone, Debug, Eq, PartialEq)]
 pub enum KeybindMode {
     Custom,
@@ -163,3 +189,4 @@ impl Default for KeybindMode {
         KeybindMode::TGTracker
     }
 }
+```

@@ -1,6 +1,7 @@
 # tonal glyph tracker
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/2b4d117015214886905691720955eb85)](https://app.codacy.com/app/scalarwaves/tgtracker?utm_source=github.com&utm_medium=referral&utm_content=tonal-glyph/tgtracker&utm_campaign=Badge_Grade_Dashboard)
+[![dependency status](https://deps.rs/repo/github/tonal-glyph/tgtracker/status.svg)](https://deps.rs/repo/github/tonal-glyph/tgtracker)
 [![Build Status](https://travis-ci.org/tonal-glyph/tgtracker.svg?branch=master)](https://travis-ci.org/tonal-glyph/tgtracker)
 
 IMPORTANT: This project is still in the planning and sandbox phase. Please see Projects and Issues for current progress.

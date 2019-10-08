@@ -1,6 +1,3 @@
-//@ - [ ] lua-jit-sys
-//@ - [ ] luvi for packaging lua addons
-
 #![allow(unused_imports)]
 #[cfg(test)]
 use include_lua::*;

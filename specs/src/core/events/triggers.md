@@ -1,7 +1,7 @@
 - [ ] Note data
     - [ ] sound file note playback
     - [ ] instrument/generator note playback
-    - [ ] initialize ChucK script
+    - [x] initialize ChucK script
     - [ ] initialize FAUST code
     - [ ] send MIDI data
 - [ ] Transport events

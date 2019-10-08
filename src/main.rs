@@ -9,11 +9,13 @@
 //! `tgtracker` boots the main thread and loads various windows
 #![allow(unused_imports)]
 extern crate tgtracker_core;
+extern crate tgtracker_specs;
 use std::env;
 use std::process::Command;
 fn main() {
-    println!("Opening bundled alacritty for terminal interface...");
-    open_alacritty();
+    // println!("Opening bundled alacritty for terminal interface...");
+    // open_alacritty();
+    tgtracker_specs::core::sdl2::main();
 }
 /// Opens bundled alacritty to send console commands to tgtracker
 fn open_alacritty() {

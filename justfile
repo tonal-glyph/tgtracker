@@ -91,8 +91,11 @@ repl:
 	@irust
 #format rust source
 rfmt:
-    @rustfmt -q --emit files src/**/*.rs
+    @rustfmt -q --emit files **/*.rs
     @echo "Formatted Rust code."
+#kill running chuck vms
+killck:
+	@sudo killall chuck
 #build for musl
 # musl:
 #     PKG_CONFIG_ALLOW_CROSS:=1 RUSTFLAGS=-Ctarget-cpu=generic cargo build --target=x86_64-unknown-linux-musl --release
