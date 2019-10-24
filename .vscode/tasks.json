@@ -7,6 +7,16 @@
             "label": "build",
             "type": "shell",
             "command": "cargo build"
-        }
+        },
+        {
+            "label": "check",
+            "type": "shell",
+            "command": "cargo check"
+        },
+        {
+            "label": "test",
+            "type": "shell",
+            "command": "cargo test --all -- --nocapture"
+        },
     ]
 }

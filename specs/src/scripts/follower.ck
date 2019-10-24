@@ -8,7 +8,7 @@ envelope follower that doesn't require sample-level chuck intervention.  A
 gain UG is used to square the incoming A/D signal (try it on your built-in
 mic), then a OnePole UG is used as a "leaky integrator" to keep a running
 estimate of the signal power. The main loop wakes up each 100 ms and
-checks the power, and prints out a message if it's over a certain level. 
+checks the power, and prints out a message if it's over a certain level.
 You might need to change the threshold, but you get the idea.
 */
 

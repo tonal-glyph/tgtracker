@@ -30,7 +30,7 @@ clean:
 	@echo "Removing all build artifacts..."
 	@rm -rf **/target
 	@echo "Removing all Rust source files..."
-	@rm -Rv src/**/*.rs
+	@rm -Rv src/core/**/*.rs src/frontend/**/*.rs
 	@cargo clean -q
 toke:
 	@tokei

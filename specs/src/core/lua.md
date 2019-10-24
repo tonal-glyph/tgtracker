@@ -1,3 +1,5 @@
+- [ ] wu language compiles to Lua. It's inspired by Moonscript and has features like Traits
+
 ```rust
 #![allow(unused_imports)]
 #[cfg(test)]

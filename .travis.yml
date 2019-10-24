@@ -8,13 +8,13 @@ matrix:
         - rust: nightly
     fast_finish: true
 after_success:
-    - echo "Success!"
+    - echo "Build succeeded!"
 after_failure:
     - echo "Something went wrong..."
 os:
     - linux
 before_install:
     - sudo apt-get update --fix-missing && sudo apt-get install -y cmake libsndfile1-dev libpulse-dev libasound2-dev libsdl-dev liblo-dev
-    - sudo cp bin/chuck /usr/bin/
+    - sudo cp bin/* /usr/bin/
 script:
     - cargo test --all -- --nocapture

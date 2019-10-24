@@ -4,6 +4,10 @@ version = "0.1.0"
 authors = ["Andrew Prentice <scalarwaves@null.net>"]
 edition = "2018"
 
+[lib]
+name = "tgtracker_core"
+path = "src/lib.rs"
+
 [dependencies]
 # bincode = "1.1.4"               # inter-process comm
 # cpal = "0.10.0"                 # x-platform audio library

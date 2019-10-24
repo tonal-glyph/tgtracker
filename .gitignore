@@ -1,9 +1,8 @@
 **/**/target
 **/*.rs.bk
-Makefile.toml
 *.code-workspace
 rustfmt*
-.vscode/cquery_cached_index
+cquery_cached_index
 node_modules
 rls*.log
 .ccls-cache

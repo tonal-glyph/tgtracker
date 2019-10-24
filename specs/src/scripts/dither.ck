@@ -50,7 +50,7 @@ fun void play_with_dither( UGen src, dur T, int qbits, int do_dither )
             ((sample + Math.random2f(0,Math.pow(2,-qbits))) * max) $ int => quantized;
         else // no dither
             (sample * max) $ int => quantized;
-        
+
         // throw away extra resolution
         quantized >> (24-qbits) << (24-qbits) => quantized;
         // cast it back for playback

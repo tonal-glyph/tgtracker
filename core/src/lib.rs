@@ -23,3 +23,4 @@
 // extern crate serde_osc;
 // extern crate spin_sleep;
 // extern crate yansi;
+pub mod plugin;

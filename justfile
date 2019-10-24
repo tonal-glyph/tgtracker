@@ -33,7 +33,7 @@ filter PATTERN: build
 	@cargo test {{PATTERN}}
 # test with backtrace
 backtrace:
-	RUST_BACKTRACE:=1 cargo test
+	RUST_BACKTRACE=1 cargo test
 #build project
 build:
 	@cargo build
