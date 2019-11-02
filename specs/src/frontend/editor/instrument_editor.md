@@ -9,3 +9,11 @@ The instrument editor allows the user to control instrument-specific settings li
 - [ ] Gain
 - [ ] Envelopes
 - [ ] MIDI channel
+
+```rust
+#![allow(dead_code)]
+use std::path::PathBuf;
+pub struct Instrument {
+    file: Option<PathBuf>,
+}
+```

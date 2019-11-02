@@ -1,14 +1,13 @@
 **/**/target
 **/*.rs.bk
 *.code-workspace
-rustfmt*
-cquery_cached_index
+.vscode/cquery_cached_index
 node_modules
 rls*.log
 .ccls-cache
 .dist
-Cargo.lock
 .vscode/browse.vc.*
 .vscode/.syncthing*
 .history
-specs/src/**/*.rs
+console/**/*
+console/**/.*

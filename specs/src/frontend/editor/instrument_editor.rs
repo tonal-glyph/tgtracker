@@ -9,3 +9,9 @@
 //@ - [ ] Gain
 //@ - [ ] Envelopes
 //@ - [ ] MIDI channel
+
+#![allow(dead_code)]
+use std::path::PathBuf;
+pub struct Instrument {
+    file: Option<PathBuf>,
+}

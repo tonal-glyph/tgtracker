@@ -16,3 +16,14 @@ The 'song editor' is a tracker-style interface for editing patterns of note data
     - [ ] Send MIDI data
     - [ ] Send/receive OSC data
     - [ ] Mute or fade out the channel
+
+```rust
+#![allow(unused_imports)]
+use crate::core::pattern::effects::{Effect, EffectArgs};
+use crate::core::pattern::note::{BaseNote, Coordinates, Key, Note};
+use crate::core::pattern::pattern::{Gain, Pattern, Points};
+use crate::core::events::triggers::{Destination, Source, TGTEvent, TGTEventData, TGTEventType, TransportEvent};
+use crate::core::chuck::{ChucK, ChucKOps};
+use crate::core::backends::busses::Busses;
+use crate::core::settings::{CurrentTheme, Interpolation, KeybindMode, Octave, SampleBitDepth, SampleRate, Tuning};
+```

@@ -22,10 +22,10 @@ sdl2 = "0.32.2"
 [build-dependencies]
 tango = "0.8.2"
 
-# [lib]
-# name = "core_specs"
-# path = "core/lib.rs"
+[lib]
+name = "tgtracker_specs"
+path = "src/lib.rs"
 
-# [[bin]]
-# name = "frontend_specs"
-# path = "frontend/main.rs"
+[[bin]]
+name = "frontend_specs"
+path = "src/frontend/main.rs"

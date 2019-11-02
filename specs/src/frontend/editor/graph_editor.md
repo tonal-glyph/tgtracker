@@ -16,3 +16,33 @@ The "graph editor" is a node graph like the one BuzzTracker made famous. Conrod 
 - [ ] Connection/Direction (edge)
     - [ ] Send targets
     - [ ] Receive targets
+
+```rust
+#![allow(dead_code)]
+pub enum Channel {
+    Mono,
+    Stereo,
+}
+pub struct Socket {
+    mode: Mode,
+    channel: Channel,
+}
+pub struct Node {
+    edges: Vec<Edge>,
+    sockets: Vec<Socket>,
+}
+pub struct NodeId {
+    id: u32,
+}
+pub enum Mode {
+    Send,
+    Receive,
+}
+pub struct Edge {
+    mode: Mode,
+    channel: Channel,
+}
+pub struct NodeGraph {
+    pub graph: Vec<Node>,
+}
+```

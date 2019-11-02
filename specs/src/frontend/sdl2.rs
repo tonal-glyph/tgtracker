@@ -1,6 +1,5 @@
-- [x] Display SDL window
+//@ - [x] Display SDL window
 
-```rust
 use sdl2::pixels::Color;
 use sdl2::event::Event;
 use sdl2::keyboard::Keycode;
@@ -41,4 +40,3 @@ pub fn main() {
         ::std::thread::sleep(Duration::new(0, 1_000_000_000u32 / 60));
     }
 }
-```

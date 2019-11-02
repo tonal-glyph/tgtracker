@@ -9,3 +9,4 @@ extern crate regex;
 extern crate rlua;
 extern crate sdl2;
 pub mod core;
+pub mod frontend;
