@@ -12,8 +12,10 @@ The instrument editor allows the user to control instrument-specific settings li
 
 ```rust
 #![allow(dead_code)]
-use std::path::PathBuf;
+// use std::path::PathBuf;
 pub struct Instrument {
-    file: Option<PathBuf>,
+    // file: Option<PathBuf, None>,
+    panning: f64,
+    gain: f64,
 }
 ```

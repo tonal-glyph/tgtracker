@@ -18,29 +18,36 @@
 //@     - [ ] Receive targets
 
 #![allow(dead_code)]
+/// Mono/Stereo switch, implement Option?
 pub enum Channel {
     Mono,
     Stereo,
 }
+/// Send/receive mode, active channel
 pub struct Socket {
     mode: Mode,
     channel: Channel,
 }
+/// Vec of edges and Vec of sockets
 pub struct Node {
     edges: Vec<Edge>,
     sockets: Vec<Socket>,
 }
+/// Numbered in order of creation
 pub struct NodeId {
     id: u32,
 }
+/// Send/receive switch, implement Option?
 pub enum Mode {
     Send,
     Receive,
 }
+/// Matches sockets
 pub struct Edge {
     mode: Mode,
     channel: Channel,
 }
+/// The actual graph
 pub struct NodeGraph {
     pub graph: Vec<Node>,
 }

@@ -30,7 +30,13 @@
 //@ - [ ] Tuning A440 or A432 ENUM
 //@ - [ ] Vibrato (rate, depth, sweep, type)
 //@ - [ ] Volume envelope
-//@
+
+#![allow(unused_variables, dead_code)]
+fn reset_config() {}
+fn load_config() {}
+fn save_config() {}
+fn lconfig_or_default() {}
+
 //@ ```c
 //@     // functions
 //@     void resetConfig(void);

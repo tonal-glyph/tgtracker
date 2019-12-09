@@ -17,15 +17,15 @@ pub fn main() {
 
     let mut canvas = window.into_canvas().build().unwrap();
 
-    canvas.set_draw_color(Color::RGB(0, 255, 255));
+    canvas.set_draw_color(Color::RGB(0, 0, 0));
     canvas.clear();
     canvas.present();
     let mut event_pump = sdl_context.event_pump().unwrap();
     let mut i = 0;
     'running: loop {
         i = (i + 1) % 255;
-        canvas.set_draw_color(Color::RGB(i, 64, 255 - i));
-        canvas.clear();
+        // canvas.set_draw_color(Color::RGB(i, 64, 255 - i));
+        // canvas.clear();
         for event in event_pump.poll_iter() {
             match event {
                 Event::Quit {..} |

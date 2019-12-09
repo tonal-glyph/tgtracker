@@ -1,3 +1,5 @@
+- [x] include_lua macro to easily load all lua code in the scripts folder
+- [x] rlua to initialize a Lua VM, create a context, and evaluate the test script
 - [ ] wu language compiles to Lua. It's inspired by Moonscript and has features like Traits
 
 ```rust

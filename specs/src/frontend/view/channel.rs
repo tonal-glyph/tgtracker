@@ -8,3 +8,12 @@
 //@     - [ ] Routing matrix
 //@     - [ ] Automation envelopes
 //@     - [ ] MIDI CC messages
+
+pub struct Channel {
+    pub gain: f64,
+    pub pan: f64,
+    // pub generators: Vec<Generator>,
+    // pub transformers: Vec<Transformer>,
+    pub offline: bool,
+    pub bus: u32,
+}

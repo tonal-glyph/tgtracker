@@ -1,4 +1,4 @@
-##tgtracker
+## tgtracker
 
 - nodes can have instruments, patterns, sequences, recordings, and edges
 - graphs can have sequences, devices, channels
