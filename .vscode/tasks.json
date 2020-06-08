@@ -6,17 +6,12 @@
         {
             "label": "build",
             "type": "shell",
-            "command": "cargo build"
+            "command": "cd build;rm -rf * .*;cmake -GNinja ..;/usr/bin/ninja;/usr/bin/ninja -t compdb > compile_commands.json"
         },
         {
-            "label": "check",
+            "label": "clean",
             "type": "shell",
-            "command": "cargo check"
-        },
-        {
-            "label": "test",
-            "type": "shell",
-            "command": "cargo test --all -- --nocapture"
-        },
+            "command": "rm -rf ${workspaceFolder}/build/*;rm -rf ${workspaceFolder}/build/.*;rm -rf ${workspaceFolder}/3rdparty/*"
+        }
     ]
 }

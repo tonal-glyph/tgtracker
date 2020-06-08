@@ -31,9 +31,9 @@ filter PATTERN: build
 #output default rustfmt.toml
 form:
 	@rustfmt --print-config default rustfmt.toml
-# install just from crates.io
+# install some rust tools
 install:
-	cargo install -f just
+	cargo install -f alacritty just ruck
 # install development dependencies
 install-dev-deps:
 	rustup install nightly
@@ -98,7 +98,7 @@ toke:
 #watch project
 # watch COMMAND='test':
 # 	cargo watch --clear --exec {{COMMAND}}
-version := `sed -En 's/version[[:space:]]*=[[:space:]]*"([^"]+)"/v\1/p' Cargo.toml`
+# version := `sed -En 's/version[[:space:]]*=[[:space:]]*"([^"]+)"/v\1/p' Cargo.toml`
 # Local Variables:
 # mode: makefile
 # End:

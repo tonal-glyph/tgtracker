@@ -1,5 +1,0 @@
-- Bundled tools
-    - alacritty - fastest terminal emulator in existence (by benchmark) - linux version
-    - chuck - strongly typed, strongly timed creative coding language
-    - just - command runner like Make, used for project management
-    - ruck - passes `--caution-to-the-wind` flag and all other arguments to `chuck` binary allowing chuck to run system CLI commands

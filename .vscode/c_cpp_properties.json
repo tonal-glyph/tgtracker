@@ -3,10 +3,12 @@
         {
             "name": "Linux",
             "includePath": [
-                "/home/dark/proj/other-trackers/**/*.h"
+                "/home/dark/proj/tgtracker/src/**/*.h",
+                "/home/dark/proj/tgtracker/src/**/*.hh",
+                "/home/dark/proj/tgtracker/src/**/*.hpp"
             ],
             "defines": [],
-            "compilerPath": "/usr/bin/clang",
+            "compilerPath": "clang",
             "cStandard": "c11",
             "cppStandard": "c++20",
             "intelliSenseMode": "clang-x64",

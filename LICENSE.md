@@ -1,5 +1,4 @@
-In keeping with Rust tradition, this app is licensed under a dual
-license, Apache2.0 or MIT, whichever suits your needs best. The
+Application-specific code is dual licensed, Apache2.0 or MIT, whichever suits your needs best. The
 awesome libraries used are each their own respective licenses.
 
                               Apache License
@@ -190,7 +189,7 @@ APPENDIX: How to apply the Apache License to your work.
    same "printed page" as the copyright notice for easier
    identification within third-party archives.
 
-Copyright 2019 Andrew Prentice
+Copyright 2019-2020 Andrew Prentice
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -208,7 +207,7 @@ OR
 
 MIT License
 
-Copyright (c) 2019 Andrew Prentice
+Copyright (c) 2019-2020 Andrew Prentice
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
