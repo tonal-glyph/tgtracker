@@ -1,6 +1,0 @@
-{
-    "start_path": "lualib",
-    "preload": {
-        "open": ["lua51"]
-    }
-}
