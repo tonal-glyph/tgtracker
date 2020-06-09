@@ -1,20 +1,35 @@
-language: rust
-rust:
-    - stable
-    - beta
-    - nightly
-matrix:
-    allow_failures:
-        - rust: nightly
-    fast_finish: true
+language: cpp
 after_success:
     - echo "Build succeeded!"
 after_failure:
     - echo "Something went wrong..."
-os:
-    - linux
 before_install:
-    - sudo apt-get update --fix-missing && sudo apt-get install -y cmake libsndfile1-dev libpulse-dev libasound2-dev libsdl-dev liblo-dev libsdl2-dev
-    - sudo cp bin/* /usr/bin/
+    - eval "${MATRIX_EVAL}"
 script:
-    - cargo test --all -- --nocapture
+    - cd scripts && ./getdeps.sh && ./builddeps.sh && cd ..
+    - cd build && cmake -G Ninja .. && ninja
+matrix:
+  include:
+    - os: linux
+      dist: bionic
+      sudo: required
+      compiler:
+        - clang
+        - gcc
+      addons:
+        apt:
+          update: true
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - gcc-7
+            - g++-7
+            - cmake
+            - ninja
+            - libsndfile1-dev
+            - libpulse-dev
+            - libasound2-dev
+            - liblo-dev
+      env:
+        - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
+    

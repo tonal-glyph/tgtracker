@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+mkdir -p ../3rdparty
 cd ../3rdparty || exit
 rm -rf ./*
 git clone --recursive https://github.com/ccrma/chuck

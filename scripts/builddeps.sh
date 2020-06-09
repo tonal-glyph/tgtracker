@@ -5,7 +5,7 @@ echo "Building tgtracker dependencies..."
 figlet -t -f doom samplerate
 cd "$FROOT"/libsamplerate || exit
 git pull
-mkdir build
+mkdir -p build
 cd build || exit
 cmake -GNinja -Wno-dev -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=ON -DLIBSAMPLERATE_INSTALL=ON -DCMAKE_INSTALL_PREFIX=/usr/local ..
 /usr/bin/ninja
@@ -15,7 +15,7 @@ rm -rf build
 figlet -t -f doom sndfile
 cd "$FROOT"/libsndfile || exit
 git pull
-mkdir build
+mkdir -p build
 cd build || exit
 cmake -GNinja -DCMAKE_BUILD_TYPE=RELEASE -DENABLE_STATIC_RUNTIME=ON -DBUILD_SHARED_LIBS=ON -DCMAKE_INSTALL_PREFIX=/usr/local ..
 /usr/bin/ninja
@@ -25,7 +25,7 @@ rm -rf build
 figlet -t -f doom rtaudio
 cd "$FROOT"/rtaudio || exit
 git pull
-mkdir build
+mkdir -p build
 cd build || exit
 cmake -GNinja -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local ..
 /usr/bin/ninja
@@ -35,7 +35,7 @@ rm -rf build
 figlet -t -f doom rtmidi
 cd "$FROOT"/rtmidi || exit
 git pull
-mkdir build
+mkdir -p build
 cd build || exit
 cmake -GNinja -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local ..
 /usr/bin/ninja
@@ -65,7 +65,7 @@ make clean
 figlet -t -f doom frut
 cd "$FROOT"/frut || exit
 git pull
-mkdir build
+mkdir -p build
 cd build || exit
 cmake -GNinja .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local -DJUCE_ROOT=../../tracktion_engine/modules/juce
 /usr/bin/ninja
