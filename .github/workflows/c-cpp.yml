@@ -13,11 +13,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: make build dir
-      run: mkdir -p build
-    - name: use build dir
-      run: cd build
     - name: run cmake
-      run: cmake -GNinja ..
+      run: cmake -GNinja .
     - name: run ninja
       run: ninja
