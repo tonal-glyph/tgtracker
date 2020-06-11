@@ -25,7 +25,7 @@ matrix:
             - gcc-7
             - g++-7
             - cmake
-            - ninja
+            - ninja-build
             - libsndfile1-dev
             - libpulse-dev
             - libasound2-dev
