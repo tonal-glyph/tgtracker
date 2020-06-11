@@ -8,11 +8,13 @@ on:
 
 jobs:
   build:
-
+    
     runs-on: ubuntu-latest
-
+    
     steps:
     - uses: actions/checkout@v2
+    - name: install apt packages
+      run: sudo apt install gcc-7 g++-7 chuck cmake faust libasound2-dev liblo-dev libpulse-dev libsamplerate0-dev librtaudio-dev librtmidi-dev libsndfile1-dev ninja-build
     - name: run cmake
       run: cmake -GNinja .
     - name: run ninja
